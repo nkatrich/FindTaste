@@ -1,38 +1,38 @@
-const options = {
-  method: 'GET',
-  headers: {
-    accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyZjY1MWNiZDgyYmJhNTM0YjNkN2U5N2Y2M2MzZWM1NyIsIm5iZiI6MTc3MTQzMzM5MC4yMDIsInN1YiI6IjY5OTVlZGFlNGZiZWRkMDc0NjFiMDZmZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.sIddTmKy6pguB1ccLYrkX3Z_KKja-_7NrORj7QZritA'
+window.location.hash = "#home"
+const app = document.getElementById("app")
+
+function renderHome() {
+  app.innerHTML = `
+    <h1>Home</h1>
+    <button data-id="550">Open Movie 550</button>
+  `
+
+  const btn = document.querySelector("button")
+  btn.addEventListener("click", () => {
+    window.location.hash = "#movie/550"
+  })
+}
+
+function renderMovie(id) {
+  app.innerHTML = `
+    <h1>Movie ID: ${id}</h1>
+    <a href="#home">Back</a>
+  `
+}
+
+function router() {
+  const hash = window.location.hash
+
+  if (hash === "#home") {
+    renderHome()
+    return
   }
-};
 
-fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', options)
-  .then(res => res.json())
-  .then(res => console.log(res, 9))
-  .catch(err => console.error(err));
-
-const options2 = {
-  method: 'GET',
-  headers: {
-    accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyZjY1MWNiZDgyYmJhNTM0YjNkN2U5N2Y2M2MzZWM1NyIsIm5iZiI6MTc3MTQzMzM5MC4yMDIsInN1YiI6IjY5OTVlZGFlNGZiZWRkMDc0NjFiMDZmZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.sIddTmKy6pguB1ccLYrkX3Z_KKja-_7NrORj7QZritA'
+  if (hash.startsWith("#movie/")) {
+    const id = hash.split("/")[1]
+    renderMovie(id)
   }
-};
+}
 
-fetch('https://api.themoviedb.org/3/movie/1419406?language=en-US', options2)
-  .then(res => res.json())
-  .then(res => console.log(res, 3))
-  .catch(err => console.error(err));
-
-const options3 = {
-  method: 'GET',
-  headers: {
-    accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyZjY1MWNiZDgyYmJhNTM0YjNkN2U5N2Y2M2MzZWM1NyIsIm5iZiI6MTc3MTQzMzM5MC4yMDIsInN1YiI6IjY5OTVlZGFlNGZiZWRkMDc0NjFiMDZmZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.sIddTmKy6pguB1ccLYrkX3Z_KKja-_7NrORj7QZritA'
-  }
-};
-
-fetch('https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-US&page=1&query=mercy', options3)
-  .then(res => res.json())
-  .then(res => console.log(res, 5))
-  .catch(err => console.error(err));
+window.addEventListener("load", router)
+window.addEventListener("hashchange", router)
