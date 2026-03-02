@@ -1,8 +1,8 @@
 window.location.hash = "#home"
-const app = document.getElementById("app")
+const app = document.querySelector(".app")
 
 function renderHome() {
-  app.innerHTML = `
+  app.innerHTML += `
     <h1>Home</h1>
     <button data-id="550">Open Movie 550</button>
   `

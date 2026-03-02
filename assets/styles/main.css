@@ -1,0 +1,15 @@
+body {
+    background-color: var(--document-bg);
+    color: var(--light-clr);
+}
+
+.app {
+    width: 100%;
+}
+
+.recs-slider {
+    width: 100%;
+    height: 500px;
+    background-image: url(../images/bg-recs/bg-recs.webp);
+    background-size: cover;
+}
