@@ -13,58 +13,36 @@
     <script src="./assets/scripts/config.js" type="module" defer></script>
     <script src="./assets/scripts/api.js" type="module" defer></script>
     <script src="./assets/scripts/render.js" type="module" defer></script>
-    <script src="./assets/scripts/main.js" type="module" defer></script>
+    <!-- <script src="./assets/scripts/main.js" type="module" defer></script> -->
 </head>
 <body>
     <div class="container">
         <header class="header">
             <div class="header-container">
-                <div class="logo-header"><h1>FindTaste</h1></div>
-                <div class="nav-header">
-                    <div class="a-header">
-                        <nav class="nav-header">
-                            <ul>
-                                <li><a href="">API</a></li>
-                            </ul>
-                        </nav>
+                <div class="first-part-of-header">
+                    <div class="logo-header"><h1>FindTaste</h1></div>
+                </div>
+                <div class="second-part-of-header">
+                    <div class="nav-header">
+                        <div class="a-header">
+                            <nav class="nav-header">
+                                <ul>
+                                    <li><a href="">API</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="div-search-movies">
+                            <input class="search-movies" type="search"><span class="img-search"><img src="./assets/icons/UI-front/magnifying-glass.svg" alt="Magnifying glass"></span>
+                        </div>
                     </div>
                 </div>
             </div>
         </header>
         <div class="app">
-            <section class="home">
-                <section class="recs-slider">
-                    <div class="container-recs">
-                        <article class="random-recom">
-                            <figure class="card-random-recom">
-                                <img src="" alt="preview of movie">
-                                <figcaption>
-                                    <h2 class="title-of-recom"></h2>
-                                    <h3 class="date-of-recom"></h3>
-                                    <span class="rate-of-recom"><span class="visual-rate-of-recom"></span><span class="percentage-of-rate-of-recom"></span></span>
-                                </figcaption>
-                            </figure>
-                        </article>
-                    </div>
-                </section>
-                <section class="list-movies">
-                    <div class="container-list-movies">
-                        <div class="div-title-recomindations-list"><h2 class="title-recomindations-list">Recommendations</h2></div>
-                        <div class="cards-of-recs-list">
-                            <article class="random-recom-card">
-                                <figure class="card-random-recom">
-                                    <img src="" alt="preview of movie">
-                                    <figcaption>
-                                        <h2 class="title-of-recom"></h2>
-                                        <h3 class="date-of-recom"></h3>
-                                        <span class="rate-of-recom"><span class="visual-rate-of-recom"></span><span class="percentage-of-rate-of-recom"></span></span>
-                                    </figcaption>
-                                </figure>
-                            </article>
-                        </div>
-                    </div>
-                </section>
-            </section>
+            
+        </div>
+        <div class="div-list-of-wish">
+            <button class="btn-list-of-wish" type="button"><img src="./assets/icons/UI-front/like.svg" alt="Heart icon - define that you wish to see"></button>
         </div>
     </div>
 </body>
