@@ -3,4 +3,9 @@
     --light-clr: #EFEFEF;
     --accent-clr: #C12E2E;
     --accent-2-clr: #612EEE;
+    --main-border-radius: 20px;
+    --extra-border-radius: 30px;
+    --marked-bold: bold;
+    --font-size-header: clamp(18px, 1.67vw, 48px);
+    --font-size-input: clamp(16px, 1.4vw, 36px)
 }
