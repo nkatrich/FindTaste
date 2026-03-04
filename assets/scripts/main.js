@@ -36,7 +36,7 @@ function renderHome() {
             </div>
         </section>
     </section>
-  `;
+  `
 
   const btn = document.querySelector("button")
   btn.addEventListener("click", () => {
@@ -44,10 +44,34 @@ function renderHome() {
   })
 }
 
-function renderMovie(id) {
+function renderMovie() {
   app.innerHTML = `
-    <h1>Movie ID: ${id}</h1>
-    <a href="#home">Back</a>
+    <section class="details">
+                <div class="container-details">
+                    <article class="movie-details">
+                        <div class="img-of-movie">
+                            <img src="" alt="Image of current movie">
+                        </div>
+                        <div class="movie-desc">
+                            <div class="div-title-of-movie-desc"><h2 class="title-of-movie-desc"></h2></div>
+                            <div class="div-bsc-info-movie-desc"><span class="age-info-movie-desc"></span><span class="time-info-movie-desc"></span><span class="date-info-movie-desc"></span></div>
+                            <div class="div-genre-of-movie-desc"></div>
+                            <div class="div-rate-of-movie-desc"><span class="visual-rate-of-recom"></span><span class="percentage-of-rate-of-recom"></span></div>
+                            <div class="div-review-about-movie">
+                                <h3 class="title-review-details">Review</h3>
+                                <p class="review-details"></p>
+                            </div>
+                            <div class="div-save-movie">
+                                <button class="add-favorite" type="button"><img src="./assets/icons/UI-front/like.svg" alt="Like icon"></button>
+                                <button class="add-wishlist" type="button"><img src="./assets/icons/UI-front/tv.svg" alt="TV icon"></button>
+                            </div>
+                            <div class="div-watch-trailer">
+                                <a href="">Watch trailer</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
   `
 }
 
@@ -61,7 +85,7 @@ function router() {
 
   if (hash.startsWith("#movie/")) {
     const id = hash.split("/")[1]
-    renderMovie(id)
+    renderMovie()
   }
 }
 

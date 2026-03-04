@@ -14,29 +14,37 @@ body {
 
 .header-container {
     display: grid;
-    grid-template-rows: 100px 80px;
+    grid-template-areas: "part-1 part-2";
+    height: 100px;
     row-gap: 30px;
 }
 
+.first-part-of-header, .second-part-of-header {
+    overflow: hidden;
+}
+
 .first-part-of-header {
+    grid-area: part-1;
     width: 100%;
     background-color: var(--light-clr);
-    border-radius: 0 0 var(--extra-border-radius) var(--extra-border-radius);
+    border-radius: 0 0 0 var(--extra-border-radius);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .second-part-of-header {
+    grid-area: part-2;
     width: 100%;
     background-color: var(--light-clr);
+    border-radius: 0 0 var(--extra-border-radius) 0;
     display: flex;
     align-items: center;
     padding: 3%;
 }
 
-.logo-header {
-
+.logo-header img {
+    
 }
 
 .div-nav-header {
@@ -124,6 +132,17 @@ input[type="search"]::-moz-search-cancel-button {
     height: 500px;
     background-image: url(../images/bg-recs/bg-recs.webp);
     background-size: cover;
+    position: relative;
+}
+
+.recs-slider::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--accent-2-clr), var(--accent-clr));
+    z-index: -1;
 }
 
 .div-list-of-wish {

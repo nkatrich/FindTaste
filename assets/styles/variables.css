@@ -3,6 +3,8 @@
     --light-clr: #EFEFEF;
     --accent-clr: #C12E2E;
     --accent-2-clr: #612EEE;
+    --accent-clr-trs: #C12E2E50;
+    --accent-2-clr-trs: #612EEE50;
     --main-border-radius: 20px;
     --extra-border-radius: 30px;
     --marked-bold: bold;
