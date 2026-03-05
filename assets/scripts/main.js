@@ -101,7 +101,17 @@ function renderWishlist() {
 
 function renderAuthority() {
   app.innerHTML = `
-    
+    <section class="about-API">
+                <article>
+                    <img src="./assets/images/bg-api/tmdb.webp" alt="The logotype of 'The Movie DataBase'(TMDB)" width="300" height="300">
+                    <p class="p-about-api">In the 'FindTaste', we use third-party API, name is <a href="https://www.themoviedb.org/" target="_blank">'The Movie DataBase'(TMDB)</a></p>
+                    <p class="p-about-developer">As well, follow me in GitHub and Telegram channel:</p>
+                    <div class="socials-media">
+                        <a href="https://github.com/nkatrich" target="_blank"><img src="./assets/icons/socials-media/GitHub.svg" alt="GitHub Logotype" width="70" height="70"></a>
+                        <a href="https://t.me/DevLogNikita" target="_blank"><img src="./assets/icons/socials-media/Telegram.svg" alt="Telegram Logotype" width="70" height="70"></a>
+                    </div>
+                </article>
+            </section>
   `
 }
 
