@@ -1,6 +1,8 @@
 const app = document.querySelector(".app")
+window.location.hash = "#home"
 
 function renderHome() {
+  window.location.hash = "#home"
   app.innerHTML = `
     <section class="home">
         <section class="recs-slider">
@@ -37,14 +39,10 @@ function renderHome() {
         </section>
     </section>
   `
-
-  const btn = document.querySelector("button")
-  btn.addEventListener("click", () => {
-    window.location.hash = "#movie/550"
-  })
 }
 
 function renderMovie() {
+  window.location.hash = "#movie/"
   app.innerHTML = `
     <section class="details">
                 <div class="container-details">
@@ -76,6 +74,7 @@ function renderMovie() {
 }
 
 function renderWishlist() {
+  window.location.hash = "#wishlist"
   app.innerHTML = `
     <section class="wishlist">
                 <div class="container-of-wishlist">
@@ -100,6 +99,7 @@ function renderWishlist() {
 }
 
 function renderAuthority() {
+  window.location.hash = "authority"
   app.innerHTML = `
     <section class="about-API">
                 <article>
@@ -118,14 +118,14 @@ function renderAuthority() {
 function router() {
   const hash = window.location.hash
 
-  if (!hash || hash === "#home") {
+  if (hash === "#home") {
     renderHome()
-    return
-  }
-
-  if (hash.startsWith("#movie/")) {
-    const id = hash.split("/")[1]
+  } else if (hash.startsWith("#movie/")) {
     renderMovie()
+  } else if (hash === "#wishlist") {
+    renderWishlist()
+  } else if (hash === "authority") {
+    renderAuthority()
   }
 }
 
