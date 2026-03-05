@@ -75,6 +75,36 @@ function renderMovie() {
   `
 }
 
+function renderWishlist() {
+  app.innerHTML = `
+    <section class="wishlist">
+                <div class="container-of-wishlist">
+                    <article class="movie-wishlist">
+                        <div class="card-wishlist">
+                            <figure class="card-movie-wishlist">
+                                <img src="" alt="preview of movie">
+                                <figcaption>
+                                    <h2 class="title-of-movie-wishlist"></h2>
+                                    <h3 class="date-of-movie-wishlist"></h3>
+                                    <p class="review-movie-wishlist"></p>
+                                </figcaption>
+                            </figure>
+                        </div>
+                        <div class="del-card">
+                            <button class="btn-del-card" type="button"><img src="./assets/icons/UI-front/cross.svg" alt="Cross shows action to delete"></button>
+                        </div>
+                    </article>
+                </div>
+            </section>
+  `
+}
+
+function renderAuthority() {
+  app.innerHTML = `
+    
+  `
+}
+
 function router() {
   const hash = window.location.hash
 
