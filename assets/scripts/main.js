@@ -1,8 +1,8 @@
-const app = document.querySelector(".app")
-window.location.hash = "#home"
+const app = document.querySelector(".app");
+window.location.hash = "#home";
 
 function renderHome() {
-  window.location.hash = "#home"
+  window.location.hash = "#home";
   app.innerHTML = `
     <section class="home">
         <section class="recs-slider">
@@ -38,11 +38,11 @@ function renderHome() {
             </div>
         </section>
     </section>
-  `
+  `;
 }
 
 function renderMovie() {
-  window.location.hash = "#movie/"
+  window.location.hash = "#movie/";
   app.innerHTML = `
     <section class="details">
                 <div class="container-details">
@@ -70,11 +70,11 @@ function renderMovie() {
                     </article>
                 </div>
             </section>
-  `
+  `;
 }
 
 function renderWishlist() {
-  window.location.hash = "#wishlist"
+  window.location.hash = "#wishlist";
   app.innerHTML = `
     <section class="wishlist">
                 <div class="container-of-wishlist">
@@ -95,11 +95,11 @@ function renderWishlist() {
                     </article>
                 </div>
             </section>
-  `
+  `;
 }
 
 function renderAuthority() {
-  window.location.hash = "authority"
+  window.location.hash = "authority";
   app.innerHTML = `
     <section class="about-API">
                 <article>
@@ -112,22 +112,22 @@ function renderAuthority() {
                     </div>
                 </article>
             </section>
-  `
+  `;
 }
 
 function router() {
-  const hash = window.location.hash
+  const hash = window.location.hash;
 
   if (hash === "#home") {
     renderHome()
   } else if (hash.startsWith("#movie/")) {
-    renderMovie()
+    renderMovie();
   } else if (hash === "#wishlist") {
-    renderWishlist()
-  } else if (hash === "authority") {
-    renderAuthority()
+    renderWishlist();
+  } else if (hash === "#authority") {
+    renderAuthority();
   }
 }
 
-window.addEventListener("load", router)
-window.addEventListener("hashchange", router)
+window.addEventListener("load", router);
+window.addEventListener("hashchange", router);
