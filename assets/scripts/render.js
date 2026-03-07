@@ -1,4 +1,4 @@
-export function convertToUI(data) {
+export function convertToUIRecs(data) {
     console.log(data);
 
     console.log(data.results[0].title);
@@ -8,4 +8,13 @@ export function convertToUI(data) {
     const titleMovie = data.results[0].title;
     const dateMovie = data.results[0].release_date;
     const rateMovie = Math.round(data.results[0].vote_average * 10);
+}
+
+export function convertToUIDetails(data) {
+
+}
+
+export function convertToUISearch(data) {
+    console.log(data);
+    
 }
