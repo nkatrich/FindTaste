@@ -1,4 +1,10 @@
+import { requestSearch } from "./api.js";
+import { idForURL } from "./render.js";
+
 const app = document.querySelector(".app");
+const searchMovies = document.querySelector('.search-movies');
+const listOfSuggested = document.querySelector('.div-list-of-suggested');
+
 window.location.hash = "#home";
 
 function renderHome() {
@@ -41,8 +47,8 @@ function renderHome() {
   `;
 }
 
-function renderMovie() {
-  window.location.hash = "#movie/";
+function renderMovie(idForURL) {
+  window.location.hash = `#movie/${idForURL}`;
   app.innerHTML = `
     <section class="details">
                 <div class="container-details">
@@ -121,7 +127,7 @@ function router() {
   if (hash === "#home") {
     renderHome()
   } else if (hash.startsWith("#movie/")) {
-    renderMovie();
+    renderMovie(idForURL);
   } else if (hash === "#wishlist") {
     renderWishlist();
   } else if (hash === "#authority") {
@@ -131,3 +137,24 @@ function router() {
 
 window.addEventListener("load", router);
 window.addEventListener("hashchange", router);
+
+searchMovies.addEventListener('input', debounce(e => {
+    if (e.target.value.length === 0) {
+        listOfSuggested.classList.remove('shown');
+    } else {
+        listOfSuggested.classList.add('shown');
+        requestSearch(e.target.value.trim());
+    }
+}, 700));
+
+function debounce(fn, delay) {
+    let timer;
+    return function(...args) {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+            fn.apply(this, args);
+        }, delay);
+    }
+}
+
+requestSearch('the wrecking crew');
