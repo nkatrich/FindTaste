@@ -1,5 +1,5 @@
 import { baseURL, options } from "./config.js";
-import { convertToUIRecs, convertToUIDetails, convertToUISearch, renderSearch } from "./render.js";
+import { convertToUIRecs, convertToUIDetails, convertToUISearch, renderSearch, renderDetails, renderRecs } from "./render.js";
 
 const stateLoading = {
     page: 1,
@@ -13,6 +13,7 @@ async function requestRecs() {
             const recsData = await fetch(`${baseURL}/movie/popular?language=en-US&page=${stateLoading.page}`, options);
             const readyData = await recsData.json();
             const validData = convertToUIRecs(readyData);
+            renderRecs(validData);
         } else {
 
         }
@@ -21,11 +22,12 @@ async function requestRecs() {
     }
 }
 
-async function requestDetails(id) {
+export async function requestDetails(id) {
     try {
         const detailsData = await fetch(`${baseURL}/movie/${id}`, options);
         const readyData = await detailsData.json();
         const validData = convertToUIDetails(readyData);
+        renderDetails(validData);
     } catch (err) {
         
     }
@@ -44,7 +46,3 @@ export async function requestSearch(query) {
         
     }
 }
-
-requestRecs();
-
-// requestDetails();

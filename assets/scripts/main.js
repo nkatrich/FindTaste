@@ -1,4 +1,4 @@
-import { requestSearch } from "./api.js";
+import { requestSearch, requestDetails } from "./api.js";
 import { idForURL } from "./render.js";
 
 const app = document.querySelector(".app");
@@ -77,6 +77,7 @@ function renderMovie(idForURL) {
                 </div>
             </section>
   `;
+  requestDetails(idForURL);
 }
 
 function renderWishlist() {
@@ -156,5 +157,3 @@ function debounce(fn, delay) {
         }, delay);
     }
 }
-
-requestSearch('the wrecking crew');

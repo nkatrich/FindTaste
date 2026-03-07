@@ -15,8 +15,8 @@ export function convertToUIRecs(data) {
 }
 
 export function convertToUIDetails(data) {
-    console.log(data, 'det');
     
+    return data;
 }
 
 export function convertToUISearch(data) {
@@ -43,15 +43,13 @@ export function renderRecs(data) {
 }
 
 export function renderDetails(data) {
-    
+    console.log(data, 'det');
 }
 
 export function renderSearch(data) {
     const listOfSuggested = document.querySelector('.list-of-suggested');
     listOfSuggested.innerHTML = '';
-    for (let i = 0; i < data.amountResults; i++) {
-        console.log(data.titles[i], data.imgs[i], data.dates[i]);
-        
+    for (let i = 0; i < data.amountResults; i++) {     
         const item = document.createElement('a');
         const texts = document.createElement('div');
         const img = document.createElement('img');
@@ -62,10 +60,12 @@ export function renderSearch(data) {
         texts.className = 'item-list-suggested-txt';
         
         img.src = `${imgURL}${data.imgs[i]}`;
+        img.setAttribute('alt', `preview movie`);
+        img.setAttribute('onerror', `this.onerror=null; this.src='./assets/icons/UI-front/err-load.svg';`);
         title.textContent = data.titles[i];
         date.textContent = data.dates[i];
         item.setAttribute('href', `#movie/${data.idsMovies[i]}`);
-        item.setAttribute('data-id', `${data.idsMovies[i]}`)
+        item.setAttribute('data-id', `${data.idsMovies[i]}`);
 
         item.appendChild(img);
         texts.appendChild(title);
@@ -78,6 +78,8 @@ export function renderSearch(data) {
 
             if (find) {
                 idForURL = movie.dataset.id;
+                const listOfSuggested = document.querySelector('.div-list-of-suggested');
+                listOfSuggested.classList.remove('shown');
             }
         })
     }
