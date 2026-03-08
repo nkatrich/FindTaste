@@ -1,6 +1,9 @@
 import { requestSearch, requestDetails } from "./api.js";
 import { idForURL } from "./render.js";
 
+const wishMovies = [];
+const favoriteMovies = [];
+
 const app = document.querySelector(".app");
 const searchMovies = document.querySelector('.search-movies');
 const listOfSuggested = document.querySelector('.div-list-of-suggested');
@@ -52,7 +55,7 @@ function renderMovie(idForURL) {
   app.innerHTML = `
     <section class="details">
                 <div class="container-details">
-                    <article class="movie-details">
+                    <article class="movie-details" data-id-details="${idForURL}">
                         <div class="div-img-of-movie">
                             <img class="img-of-movie" alt="Image of current movie" width="300" height="300">
                         </div>
@@ -78,6 +81,41 @@ function renderMovie(idForURL) {
             </section>
   `;
   requestDetails(idForURL);
+  document.querySelector('.add-favorite').addEventListener('click', () => {
+    const titleOfMovieDesc = document.querySelector('.title-of-movie-desc').textContent;
+    const date = document.querySelector('.date-info-movie-desc').textContent;
+    const img = document.querySelector('.img-of-movie').src;
+    const movieDetails = document.querySelector('.movie-details');
+    const id = movieDetails.dataset.idDetails;
+    console.log(titleOfMovieDesc);
+    
+    const data = {
+        titleOfMovieDesc,
+        date,
+        img,
+        id
+    }
+    favoriteMovies.push(data);
+    localStorage.setItem('favoritesMovies', JSON.stringify(favoriteMovies));
+    
+  });
+  document.querySelector('.add-wishlist').addEventListener('click', () => {
+    const titleOfMovieDesc = document.querySelector('.title-of-movie-desc').textContent;
+    const date = document.querySelector('.date-info-movie-desc').textContent;
+    const img = document.querySelector('.img-of-movie').src;
+    const movieDetails = document.querySelector('.movie-details');
+    const id = movieDetails.dataset.idDetails;
+    console.log(titleOfMovieDesc);
+    
+    const data = {
+        titleOfMovieDesc,
+        date,
+        img,
+        id
+    }
+    wishMovies.push(data);
+    localStorage.setItem('wishlistMovies', JSON.stringify(wishMovies));
+  });
 }
 
 function renderWishlist() {
