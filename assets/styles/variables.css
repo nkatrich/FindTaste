@@ -10,5 +10,10 @@
     --marked-bold: bold;
     --font-size-header: clamp(18px, 1.67vw, 48px);
     --font-size-input: clamp(16px, 1.4vw, 36px);
-    --font-size-titles-h2: clamp(24px, 1.9vw, 48px);
+    --font-size-titles-h2: clamp(28px, 2.2vw, 56px);
+    --font-size-titles-h3: clamp(22px, 1.65vw, 42px);
+    --font-size-details-page: clamp(22px, 1.7vw, 42px);
+    --high-rate: rgb(12, 200, 12);
+    --medium-rate: #E7E127;
+    --low-rate: rgb(203, 36, 36);
 }

@@ -24,27 +24,38 @@ export function convertToUIDetails(data) {
     const minutes = unTime % 60;
     const unDate = data.release_date;
     const dividedDate = unDate.split('-')
+    console.log(dividedDate);
+    
     let monthName;
     
     switch (dividedDate[1]) {
-        case '01': monthName = 'January';
-        case '02': monthName = 'Februrary';
-        case '03': monthName = 'March';
-        case '04': monthName = 'April';
-        case '05': monthName = 'May';
-        case '06': monthName = 'June';
-        case '07': monthName = 'July';
-        case '08': monthName = 'August';
-        case '09': monthName = 'September';
-        case '10': monthName = 'October';
-        case '11': monthName = 'November';
-        case '12': monthName = 'December';
+        case '01': monthName = 'January'; break;
+        case '02': monthName = 'Februrary'; break;
+        case '03': monthName = 'March'; break;
+        case '04': monthName = 'April'; break;
+        case '05': monthName = 'May'; break;
+        case '06': monthName = 'June'; break;
+        case '07': monthName = 'July'; break;
+        case '08': monthName = 'August'; break;
+        case '09': monthName = 'September'; break;
+        case '10': monthName = 'October'; break;
+        case '11': monthName = 'November'; break;
+        case '12': monthName = 'December'; break;
+        default: monthName = "No Date"; break;
     }
     dividedDate.splice(1, 1);
     dividedDate.splice(2, 0, monthName);
     const date = dividedDate.join(' ');
-    const genres = data.genres;
+    const unGenres = data.genres;
+    let splittedGenres = [];
+    for (let i in unGenres) {
+        splittedGenres.push(unGenres[i].name);
+    }
+    let genres = splittedGenres.join(', ');
+    console.log(genres);
+    
     const rating = Math.round(data.vote_average * 10);
+    
     const overview = data.overview;
     
     return { bgImg, imgMovie, title, hours, minutes, date, genres, rating, overview};
@@ -83,8 +94,35 @@ export function renderRecs(data) {
 }
 
 export function renderDetails(data) {
-    
-    
+    const containerDetails = document.querySelector('.container-details');
+    const imgOfMovie = document.querySelector('.img-of-movie');
+    const titleOfMovieDesc = document.querySelector('.title-of-movie-desc');
+    const timeInfoMovieDesc = document.querySelector('.time-info-movie-desc');
+    const dateInfoMovieDesc = document.querySelector('.date-info-movie-desc');
+    const genreOfMovieDesc = document.querySelector('.genre-of-movie-desc');
+    const percentageOfRateOfRecom = document.querySelector('.percentage-of-rate-of-recom');
+    const visualRateOfRecom = document.querySelector('.visual-rate-of-recom');
+    const reviewDetails = document.querySelector('.review-details');
+
+    containerDetails.style.backgroundImage = `url(${imgURL}${data.bgImg})`;
+    imgOfMovie.src = `${imgURL}${data.imgMovie}`;
+    imgOfMovie.setAttribute('onerror', `this.onerror=null; this.src='./assets/icons/UI-front/err-load.svg';`);
+    titleOfMovieDesc.textContent = data.title;
+    timeInfoMovieDesc.textContent = `${data.hours} h ${data.minutes} m`;
+    dateInfoMovieDesc.textContent = data.date;
+    genreOfMovieDesc.textContent = data.genres;
+    percentageOfRateOfRecom.textContent = `${data.rating}% Of Rating`;
+    if (data.rating >= 70) {
+        visualRateOfRecom.style.backgroundColor = 'rgb(12, 200, 12)';
+        visualRateOfRecom.style.transform = `translateX(${data.rating}%) scaleY(2)`;
+    } else if (data.rating >= 40) {
+        visualRateOfRecom.style.backgroundColor = '#E7E127';
+        visualRateOfRecom.style.transform = `translateX(${data.rating}%) scaleY(2)`;
+    } else {
+        visualRateOfRecom.style.backgroundColor = 'rgb(203, 36, 36)';
+        visualRateOfRecom.style.transform = `translateX(${data.rating}%) scaleY(2)`;
+    }
+    reviewDetails.textContent = data.overview;
 }
 
 export function renderSearch(data) {

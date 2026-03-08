@@ -53,14 +53,14 @@ function renderMovie(idForURL) {
     <section class="details">
                 <div class="container-details">
                     <article class="movie-details">
-                        <div class="img-of-movie">
-                            <img src="" alt="Image of current movie">
+                        <div class="div-img-of-movie">
+                            <img class="img-of-movie" alt="Image of current movie" width="300" height="300">
                         </div>
                         <div class="movie-desc">
                             <div class="div-title-of-movie-desc"><h2 class="title-of-movie-desc"></h2></div>
-                            <div class="div-bsc-info-movie-desc"><span class="age-info-movie-desc"></span><span class="time-info-movie-desc"></span><span class="date-info-movie-desc"></span></div>
-                            <div class="div-genre-of-movie-desc"></div>
-                            <div class="div-rate-of-movie-desc"><span class="visual-rate-of-recom"></span><span class="percentage-of-rate-of-recom"></span></div>
+                            <div class="div-bsc-info-movie-desc"><span class="time-info-movie-desc"></span><span class="date-info-movie-desc"></span></div>
+                            <div class="div-genre-of-movie-desc"><p class="genre-of-movie-desc"></p></div>
+                            <div class="div-rate-of-movie-desc"><div class="div-bar-and-perc"><span class="visual-rate-of-recom"></div></span><div class="percentage-of-rate-of-recom"></div></div>
                             <div class="div-review-about-movie">
                                 <h3 class="title-review-details">Overview</h3>
                                 <p class="review-details"></p>
@@ -70,7 +70,7 @@ function renderMovie(idForURL) {
                                 <button class="add-wishlist" type="button"><img src="./assets/icons/UI-front/tv.svg" alt="TV icon"></button>
                             </div>
                             <div class="div-watch-trailer">
-                                <a href="">Watch trailer</a>
+                                <iframe class="trailer" src="" frameborder="0" ></iframe>
                             </div>
                         </div>
                     </article>

@@ -28,6 +28,7 @@ export async function requestDetails(id) {
         const readyData = await detailsData.json();
         const validData = convertToUIDetails(readyData);
         renderDetails(validData);
+        requestTrailer(id);
     } catch (err) {
         
     }
@@ -58,4 +59,3 @@ export async function requestTrailer(id) {
     }
 }
 
-requestTrailer('588648')
