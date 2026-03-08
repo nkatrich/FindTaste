@@ -1,5 +1,5 @@
 import { baseURL, options } from "./config.js";
-import { convertToUIRecs, convertToUIDetails, convertToUISearch, renderSearch, renderDetails, renderRecs } from "./render.js";
+import { convertToUIRecs, convertToUIDetails, convertToUISearch, convertToUITrailer, renderSearch, renderDetails, renderRecs, renderTrailer } from "./render.js";
 
 const stateLoading = {
     page: 1,
@@ -46,3 +46,16 @@ export async function requestSearch(query) {
         
     }
 }
+
+export async function requestTrailer(id) {
+    try {
+        const trailerData = await fetch(`${baseURL}/movie/${id}/videos`, options);
+        const readyData = await trailerData.json();
+        const validData = convertToUITrailer(readyData);
+        renderTrailer(validData);
+    } catch (err) {
+        
+    }
+}
+
+requestTrailer('1168190')

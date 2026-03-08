@@ -62,7 +62,7 @@ function renderMovie(idForURL) {
                             <div class="div-genre-of-movie-desc"></div>
                             <div class="div-rate-of-movie-desc"><span class="visual-rate-of-recom"></span><span class="percentage-of-rate-of-recom"></span></div>
                             <div class="div-review-about-movie">
-                                <h3 class="title-review-details">Review</h3>
+                                <h3 class="title-review-details">Overview</h3>
                                 <p class="review-details"></p>
                             </div>
                             <div class="div-save-movie">
@@ -157,3 +157,6 @@ function debounce(fn, delay) {
         }, delay);
     }
 }
+
+listOfSuggested.classList.add('shown');
+requestSearch('the wrecking crew')
