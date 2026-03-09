@@ -303,6 +303,7 @@ input[type="search"]::-moz-search-cancel-button {
 .movie-desc {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 15px;
 }
 
@@ -320,6 +321,7 @@ input[type="search"]::-moz-search-cancel-button {
     padding: 5px;
     border-radius: var(--main-border-radius);
     font-weight: bold;
+    font-size: var(--font-size-details-2-page);
 }
 
 .genre-of-movie-desc {
@@ -327,6 +329,7 @@ input[type="search"]::-moz-search-cancel-button {
     background: linear-gradient(135deg, var(--accent-2-clr-trs), var(--accent-clr-trs));
     padding: 5px;
     border-radius: var(--main-border-radius);
+    font-size: var(--font-size-details-2-page);
 }
 
 .div-rate-of-movie-desc {
@@ -335,7 +338,9 @@ input[type="search"]::-moz-search-cancel-button {
 }
 
 .div-bar-and-perc {
-    width: 250px;
+    width: 100%;
+    min-width: 150px;
+    max-width: 250px;
     height: 40px;
     background-color: var(--document-bg);
     border-radius: var(--extra-border-radius);
@@ -357,6 +362,7 @@ input[type="search"]::-moz-search-cancel-button {
     align-items: center;
     font-size: var(--font-size-details-page);
     font-weight: bold;
+    text-align: center;
 }
 
 .title-review-details {
@@ -366,6 +372,7 @@ input[type="search"]::-moz-search-cancel-button {
 
 .review-details {
     max-width: 500px;
+    font-size: var(--font-size-p);
 }
 
 .div-save-movie {
