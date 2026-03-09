@@ -1,4 +1,4 @@
-import { imgURL } from "./config.js";
+import { imgURL, smallImgURL } from "./config.js";
 
 export let idForURL = 0;
 
@@ -84,7 +84,7 @@ export function renderDetails(data) {
     const reviewDetails = document.querySelector('.review-details');
 
     containerDetails.style.backgroundImage = `url(${imgURL}${data.bgImg})`;
-    imgOfMovie.src = `${imgURL}${data.imgMovie}`;
+    imgOfMovie.src = `${smallImgURL}${data.imgMovie}`;
     imgOfMovie.setAttribute('onerror', `this.onerror=null; this.src='./assets/icons/UI-front/err-load.svg';`);
     titleOfMovieDesc.textContent = data.title;
     timeInfoMovieDesc.textContent = `${data.hours} h ${data.minutes} m`;
@@ -118,7 +118,7 @@ export function renderSearch(data) {
             item.className = 'item-list-suggested';
             texts.className = 'item-list-suggested-txt';
             
-            img.src = `${imgURL}${data.imgs[i]}`;
+            img.src = `${smallImgURL}${data.imgs[i]}`;
             img.setAttribute('alt', `preview movie`);
             img.setAttribute('onerror', `this.onerror=null; this.src='./assets/icons/UI-front/err-load.svg';`);
             title.textContent = data.titles[i];
