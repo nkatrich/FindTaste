@@ -23,29 +23,7 @@ export function convertToUIDetails(data) {
     const hours = Math.floor(unTime / 60);
     const minutes = unTime % 60;
     const unDate = data.release_date;
-    const dividedDate = unDate.split('-')
-    console.log(dividedDate);
-    
-    let monthName;
-    
-    switch (dividedDate[1]) {
-        case '01': monthName = 'January'; break;
-        case '02': monthName = 'Februrary'; break;
-        case '03': monthName = 'March'; break;
-        case '04': monthName = 'April'; break;
-        case '05': monthName = 'May'; break;
-        case '06': monthName = 'June'; break;
-        case '07': monthName = 'July'; break;
-        case '08': monthName = 'August'; break;
-        case '09': monthName = 'September'; break;
-        case '10': monthName = 'October'; break;
-        case '11': monthName = 'November'; break;
-        case '12': monthName = 'December'; break;
-        default: monthName = "No Date"; break;
-    }
-    dividedDate.splice(1, 1);
-    dividedDate.splice(2, 0, monthName);
-    const date = dividedDate.join(' ');
+    const date = makeDate(unDate);
     const unGenres = data.genres;
     let splittedGenres = [];
     for (let i in unGenres) {
@@ -71,7 +49,8 @@ export function convertToUISearch(data) {
     for (let i = 0; i < data.results.length; i++) {
         titles.push(data.results[i].title);
         imgs.push(data.results[i].poster_path);
-        dates.push(data.results[i].release_date);
+        const date = makeDate(data.results[i].release_date);
+        dates.push(date);
         idsMovies.push(data.results[i].id);
     }
 
@@ -178,4 +157,33 @@ export function renderSearch(data) {
 export function renderTrailer(data) {
     const trailer = document.querySelector('.trailer');
     trailer.src = `https://www.youtube.com/embed/${data.key}`;
+}
+
+// small converters(can be repeat for some parts code)
+
+function makeDate(data) {
+    const dividedDate = data.split('-');
+    console.log(dividedDate);
+    
+    let monthName;
+    
+    switch (dividedDate[1]) {
+        case '01': monthName = 'January'; break;
+        case '02': monthName = 'Februrary'; break;
+        case '03': monthName = 'March'; break;
+        case '04': monthName = 'April'; break;
+        case '05': monthName = 'May'; break;
+        case '06': monthName = 'June'; break;
+        case '07': monthName = 'July'; break;
+        case '08': monthName = 'August'; break;
+        case '09': monthName = 'September'; break;
+        case '10': monthName = 'October'; break;
+        case '11': monthName = 'November'; break;
+        case '12': monthName = 'December'; break;
+        default: monthName = "No Date"; break;
+    }
+    dividedDate.splice(1, 1);
+    dividedDate.splice(2, 0, monthName);
+    const date = dividedDate.join(' ');
+    return date;
 }
