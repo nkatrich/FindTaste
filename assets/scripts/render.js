@@ -159,11 +159,12 @@ export function renderTrailer(data) {
     trailer.src = `https://www.youtube.com/embed/${data.key}`;
 }
 
+
+
 // small converters(can be repeat for some parts code)
 
 function makeDate(data) {
     const dividedDate = data.split('-');
-    console.log(dividedDate);
     
     let monthName;
     

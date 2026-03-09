@@ -117,23 +117,42 @@ function renderMovie(idForURL) {
     localStorage.setItem('wishlistMovies', JSON.stringify(wishMovies));
   });
 }
-
+window.location.hash = "#wishlist";
 function renderWishlist() {
   window.location.hash = "#wishlist";
   app.innerHTML = `
     <section class="wishlist">
+                <div class="title-wishlist"><h2>Wishlist</h2></div>
                 <div class="container-of-wishlist">
                     <article class="movie-wishlist">
-                        <div class="card-wishlist">
+                        <a class="card-wishlist">
                             <figure class="card-movie-wishlist">
-                                <img src="" alt="preview of movie">
+                                <img class="img-preview-wishlist" src="" alt="preview of movie">
                                 <figcaption>
                                     <h2 class="title-of-movie-wishlist"></h2>
                                     <h3 class="date-of-movie-wishlist"></h3>
                                     <p class="review-movie-wishlist"></p>
                                 </figcaption>
                             </figure>
+                        </a>
+                        <div class="del-card">
+                            <button class="btn-del-card" type="button"><img src="./assets/icons/UI-front/cross.svg" alt="Cross shows action to delete"></button>
                         </div>
+                    </article>
+                </div>
+                <div class="title-favorite"><h2>Favorite</h2></div>
+                <div class="container-of-favorite">
+                    <article class="movie-favorite">
+                        <a class="card-favorite">
+                            <figure class="card-movie-favorite">
+                                <img class="img-preview-favorite" src="" alt="preview of movie">
+                                <figcaption>
+                                    <h2 class="title-of-movie-favorite"></h2>
+                                    <h3 class="date-of-movie-favorite"></h3>
+                                    <p class="review-movie-favorite"></p>
+                                </figcaption>
+                            </figure>
+                        </a>
                         <div class="del-card">
                             <button class="btn-del-card" type="button"><img src="./assets/icons/UI-front/cross.svg" alt="Cross shows action to delete"></button>
                         </div>
@@ -141,6 +160,16 @@ function renderWishlist() {
                 </div>
             </section>
   `;
+
+document.querySelector('.card-wishlist').addEventListener('click', () => {
+    const movies = JSON.parse(localStorage.getItem('wishlistMovies')) || [];
+    // direct to details !
+});
+
+document.querySelector('.card-favorite').addEventListener('click', () => {
+
+});
+  
 }
 
 function renderAuthority() {
@@ -196,5 +225,5 @@ function debounce(fn, delay) {
     }
 }
 
-listOfSuggested.classList.add('shown');
-requestSearch('the wrecking crew')
+// listOfSuggested.classList.add('shown');
+// requestSearch('the wrecking crew')
