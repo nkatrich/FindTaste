@@ -139,11 +139,15 @@ for (let i in moviesFavorite) {
         <article class="movie-favorite">
             <a class="card-favorite" href="#movie/${moviesFavorite[i].id}" data-id="${moviesFavorite[i].id}">
                 <figure class="card-movie-favorite">
-                    <img class="img-preview-favorite" src="${moviesFavorite[i].img}" alt="preview of movie">
-                    <figcaption>
-                        <h2 class="title-of-movie-favorite">${moviesFavorite[i].titleOfMovieDesc}</h2>
-                        <h3 class="date-of-movie-favorite">${moviesFavorite[i].date}</h3>
-                    </figcaption>
+                    <div>
+                        <img class="img-preview-favorite" src="${moviesFavorite[i].img}" alt="preview of movie">
+                    </div>
+                    <div class="div-decs-favorite-wishlist">
+                        <figcaption>
+                            <h2 class="title-of-movie-favorite">${moviesFavorite[i].titleOfMovieDesc}</h2>
+                            <h3 class="date-of-movie-favorite">${moviesFavorite[i].date}</h3>
+                        </figcaption>
+                    </div>
                 </figure>
             </a>
             <div class="del-card">
@@ -158,11 +162,15 @@ for (let i in moviesWishlist) {
         <article class="movie-wishlist">
             <a class="card-wishlist" href="#movie/${moviesWishlist[i].id}" data-id="${moviesWishlist[i].id}">
                 <figure class="card-movie-wishlist">
-                    <img class="img-preview-wishlist" src="${moviesWishlist[i].img}" alt="preview of movie">
-                    <figcaption>
-                        <h2 class="title-of-movie-wishlist">${moviesWishlist[i].titleOfMovieDesc}</h2>
-                        <h3 class="date-of-movie-wishlist">${moviesWishlist[i].date}</h3>
-                    </figcaption>
+                    <div>
+                        <img class="img-preview-wishlist" src="${moviesWishlist[i].img}" alt="preview of movie">
+                    </div>
+                    <div class="div-decs-wishlist-wishlist">
+                        <figcaption>
+                            <h2 class="title-of-movie-wishlist">${moviesWishlist[i].titleOfMovieDesc}</h2>
+                            <h3 class="date-of-movie-wishlist">${moviesWishlist[i].date}</h3>
+                        </figcaption>
+                    </div>
                 </figure>
             </a>
             <div class="del-card">
@@ -172,7 +180,6 @@ for (let i in moviesWishlist) {
     `;
 }
 
-// make for 2 btns delegation events !!
 containerOfFavorite.addEventListener('click', (e) => {
     const movie = e.target.closest('.card-favorite');
 
