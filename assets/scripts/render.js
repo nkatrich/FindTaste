@@ -135,7 +135,7 @@ export function renderSearch(data) {
             listOfSuggested.addEventListener('click', (e) => {
                 const movie = e.target.closest('.item-list-suggested');
 
-                if (find) {
+                if (movie) {
                     idForURL = movie.dataset.id;
                     const listOfSuggested = document.querySelector('.div-list-of-suggested');
                     listOfSuggested.classList.remove('shown');

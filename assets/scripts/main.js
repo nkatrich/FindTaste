@@ -117,57 +117,76 @@ function renderMovie(idForURL) {
     localStorage.setItem('wishlistMovies', JSON.stringify(wishMovies));
   });
 }
-window.location.hash = "#wishlist";
+
 function renderWishlist() {
   window.location.hash = "#wishlist";
   app.innerHTML = `
     <section class="wishlist">
-                <div class="title-wishlist"><h2>Wishlist</h2></div>
-                <div class="container-of-wishlist">
-                    <article class="movie-wishlist">
-                        <a class="card-wishlist">
-                            <figure class="card-movie-wishlist">
-                                <img class="img-preview-wishlist" src="" alt="preview of movie">
-                                <figcaption>
-                                    <h2 class="title-of-movie-wishlist"></h2>
-                                    <h3 class="date-of-movie-wishlist"></h3>
-                                    <p class="review-movie-wishlist"></p>
-                                </figcaption>
-                            </figure>
-                        </a>
-                        <div class="del-card">
-                            <button class="btn-del-card" type="button"><img src="./assets/icons/UI-front/cross.svg" alt="Cross shows action to delete"></button>
-                        </div>
-                    </article>
-                </div>
-                <div class="title-favorite"><h2>Favorite</h2></div>
-                <div class="container-of-favorite">
-                    <article class="movie-favorite">
-                        <a class="card-favorite">
-                            <figure class="card-movie-favorite">
-                                <img class="img-preview-favorite" src="" alt="preview of movie">
-                                <figcaption>
-                                    <h2 class="title-of-movie-favorite"></h2>
-                                    <h3 class="date-of-movie-favorite"></h3>
-                                    <p class="review-movie-favorite"></p>
-                                </figcaption>
-                            </figure>
-                        </a>
-                        <div class="del-card">
-                            <button class="btn-del-card" type="button"><img src="./assets/icons/UI-front/cross.svg" alt="Cross shows action to delete"></button>
-                        </div>
-                    </article>
-                </div>
-            </section>
+        <div class="title-wishlist"><h2>Wishlist</h2></div>
+        <div class="container-of-wishlist"></div>
+        <div class="title-favorite"><h2>Favorite</h2></div>
+        <div class="container-of-favorite"></div>
+    </section>
   `;
 
-document.querySelector('.card-wishlist').addEventListener('click', () => {
-    const movies = JSON.parse(localStorage.getItem('wishlistMovies')) || [];
-    // direct to details !
+const containerOfFavorite = document.querySelector('.container-of-favorite');
+const containerOfWishlist = document.querySelector('.container-of-wishlist');
+const moviesFavorite = JSON.parse(localStorage.getItem('favoritesMovies')) || [];
+const moviesWishlist = JSON.parse(localStorage.getItem('wishlistMovies')) || [];
+
+for (let i in moviesFavorite) {
+    containerOfFavorite.innerHTML += `
+        <article class="movie-favorite">
+            <a class="card-favorite" href="#movie/${moviesFavorite[i].id}" data-id="${moviesFavorite[i].id}">
+                <figure class="card-movie-favorite">
+                    <img class="img-preview-favorite" src="${moviesFavorite[i].img}" alt="preview of movie">
+                    <figcaption>
+                        <h2 class="title-of-movie-favorite">${moviesFavorite[i].titleOfMovieDesc}</h2>
+                        <h3 class="date-of-movie-favorite">${moviesFavorite[i].date}</h3>
+                    </figcaption>
+                </figure>
+            </a>
+            <div class="del-card">
+                <button class="btn-del-card" type="button"><img src="./assets/icons/UI-front/cross.svg" alt="Cross shows action to delete"></button>
+            </div>
+        </article>
+    `;
+}
+
+for (let i in moviesWishlist) {
+    containerOfWishlist.innerHTML += `
+        <article class="movie-wishlist">
+            <a class="card-wishlist" href="#movie/${moviesWishlist[i].id}" data-id="${moviesWishlist[i].id}">
+                <figure class="card-movie-wishlist">
+                    <img class="img-preview-wishlist" src="${moviesWishlist[i].img}" alt="preview of movie">
+                    <figcaption>
+                        <h2 class="title-of-movie-wishlist">${moviesWishlist[i].titleOfMovieDesc}</h2>
+                        <h3 class="date-of-movie-wishlist">${moviesWishlist[i].date}</h3>
+                    </figcaption>
+                </figure>
+            </a>
+            <div class="del-card">
+                <button class="btn-del-card" type="button"><img src="./assets/icons/UI-front/cross.svg" alt="Cross shows action to delete"></button>
+            </div>
+        </article>
+    `;
+}
+
+// make for 2 btns delegation events !!
+containerOfFavorite.addEventListener('click', (e) => {
+    const movie = e.target.closest('.card-favorite');
+
+    if (movie) {
+        idForURL = movie.dataset.id;
+    }
 });
 
-document.querySelector('.card-favorite').addEventListener('click', () => {
+containerOfWishlist.addEventListener('click', (e) => {
+    const movie = e.target.closest('.card-wishlist');
 
+    if (movie) {
+        idForURL = movie.dataset.id;
+    }
 });
   
 }
