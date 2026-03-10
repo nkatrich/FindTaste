@@ -207,8 +207,6 @@ input[type="search"]::-moz-search-cancel-button {
 
 .app {
     width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
 }
 
 .recs-slider {

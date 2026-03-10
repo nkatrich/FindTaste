@@ -2,6 +2,10 @@ import { imgURL, smallImgURL } from "./config.js";
 
 export let idForURL = 0;
 
+export function setIdForURL(newValue) {
+    idForURL = newValue;
+}
+
 export function convertToUIRecs(data) {
     console.log(data);
 

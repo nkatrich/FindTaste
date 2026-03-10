@@ -1,5 +1,5 @@
 import { requestSearch, requestDetails } from "./api.js";
-import { idForURL } from "./render.js";
+import { idForURL, setIdForURL } from "./render.js";
 
 const wishMovies = [];
 const favoriteMovies = [];
@@ -177,7 +177,7 @@ containerOfFavorite.addEventListener('click', (e) => {
     const movie = e.target.closest('.card-favorite');
 
     if (movie) {
-        idForURL = movie.dataset.id;
+        setIdForURL(movie.dataset.id);
     }
 });
 
@@ -185,7 +185,7 @@ containerOfWishlist.addEventListener('click', (e) => {
     const movie = e.target.closest('.card-wishlist');
 
     if (movie) {
-        idForURL = movie.dataset.id;
+        setIdForURL(movie.dataset.id);
     }
 });
   
