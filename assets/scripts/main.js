@@ -148,7 +148,7 @@ for (let i in favoritesMovies) {
                 </figure>
             </a>
             <div class="del-card">
-                <button class="btn-del-card" type="button"><img src="./assets/icons/UI-front/cross.svg" alt="Cross shows action to delete"></button>
+                <button class="btn-del-card" type="button" data-id="${favoritesMovies[i].id}"><img src="./assets/icons/UI-front/cross.svg" alt="Cross shows action to delete"></button>
             </div>
         </article>
     `;
@@ -171,34 +171,59 @@ for (let i in wishlistMovies) {
                 </figure>
             </a>
             <div class="del-card">
-                <button class="btn-del-card" type="button"><img src="./assets/icons/UI-front/cross.svg" alt="Cross shows action to delete"></button>
+                <button class="btn-del-card" type="button" data-id="${wishlistMovies[i].id}"><img src="./assets/icons/UI-front/cross.svg" alt="Cross shows action to delete" ></button>
             </div>
         </article>
     `;
 }
+console.log(favoritesMovies);
 
 containerOfFavorite.addEventListener('click', (e) => {
-    const movie = e.target.closest('.card-favorite');
-    const btnDelCard = document.querySelector('.btn-del-card');
+    const btnDelCard = e.target.closest('.btn-del-card');
+    
+    if (btnDelCard) {
+        const btnDelCardId = btnDelCard.dataset.id;
+        const movieFavorite = e.target.closest('.movie-favorite')
 
+        if (btnDelCardId) {
+            const index = favoritesMovies.findIndex(i => i.id === btnDelCardId);
+            if (index !== -1) {
+                favoritesMovies.splice(index, 1);
+                movieFavorite.remove();
+                localStorage.setItem('favoritesMovies', JSON.stringify(favoritesMovies));
+            }
+        }
+        return;
+    }
+
+    const movie = e.target.closest('.card-favorite');
     if (movie) {
         setIdForURL(movie.dataset.id);
-    }
-    if (btnDelCard) {
-        const movieFavorite = document.querySelector('.movie-favorite');
     }
 });
 
-containerOfWishlist.addEventListener('click', (e) => {
-    const movie = e.target.closest('.card-wishlist');
-    const btnDelCard = document.querySelector('.btn-del-card');
 
+containerOfWishlist.addEventListener('click', (e) => {
+    const btnDelCard = e.target.closest('.btn-del-card');
+    
+    if (btnDelCard) {
+        const btnDelCardId = btnDelCard.dataset.id;
+        const movieWishlist= e.target.closest('.movie-wishlist')
+
+        if (btnDelCardId) {
+            const index = wishlistMovies.findIndex(i => i.id === btnDelCardId);
+            if (index !== -1) {
+                wishlistMovies.splice(index, 1);
+                movieWishlist.remove();
+                localStorage.setItem('wishlistMovies', JSON.stringify(wishlistMovies));
+            }
+        }
+        return;
+    }
+
+    const movie = e.target.closest('.card-wishlist');
     if (movie) {
         setIdForURL(movie.dataset.id);
-    }
-    if (btnDelCard) {
-        const movieWishlist = document.querySelector('.movie-wishlist');
-        // MAKE LOGIC OF REMOVE ITEM AND LOCALSTORAGE REMOVING ITEM
     }
 });
   
