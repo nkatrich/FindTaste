@@ -81,40 +81,59 @@ function renderMovie(idForURL) {
             </section>
   `;
   requestDetails(idForURL);
-  document.querySelector('.add-favorite').addEventListener('click', () => {
-    const titleOfMovieDesc = document.querySelector('.title-of-movie-desc').textContent;
-    const date = document.querySelector('.date-info-movie-desc').textContent;
-    const img = document.querySelector('.img-of-movie').src;
-    const movieDetails = document.querySelector('.movie-details');
-    const id = movieDetails.dataset.idDetails;
-    console.log(titleOfMovieDesc);
-    
-    const data = {
-        titleOfMovieDesc,
-        date,
-        img,
-        id
+  document.querySelector('.add-favorite').style.transition = 'filter 0.5s ease';
+  document.querySelector('.add-favorite').style.filter = 'brightness(1)';
+  const index1 = favoritesMovies.findIndex(i => i.id === idForURL);
+    if (index1 !== -1) {
+        document.querySelector('.add-favorite').style.filter = 'brightness(0.4)';
+    } else {
+        document.querySelector('.add-favorite').addEventListener('click', () => {
+
+        document.querySelector('.add-favorite').style.filter = 'brightness(0.4)';
+        const titleOfMovieDesc = document.querySelector('.title-of-movie-desc').textContent;
+        const date = document.querySelector('.date-info-movie-desc').textContent;
+        const img = document.querySelector('.img-of-movie').src;
+        const movieDetails = document.querySelector('.movie-details');
+        const id = movieDetails.dataset.idDetails;
+        console.log(titleOfMovieDesc);
+        
+        const data = {
+            titleOfMovieDesc,
+            date,
+            img,
+            id
+        }
+        favoritesMovies.push(data);
+        localStorage.setItem('favoritesMovies', JSON.stringify(favoritesMovies));
+    });
     }
-    favoritesMovies.push(data);
-    localStorage.setItem('favoritesMovies', JSON.stringify(favoritesMovies));
-  });
-  document.querySelector('.add-wishlist').addEventListener('click', () => {
-    const titleOfMovieDesc = document.querySelector('.title-of-movie-desc').textContent;
-    const date = document.querySelector('.date-info-movie-desc').textContent;
-    const img = document.querySelector('.img-of-movie').src;
-    const movieDetails = document.querySelector('.movie-details');
-    const id = movieDetails.dataset.idDetails;
-    console.log(titleOfMovieDesc);
-    
-    const data = {
-        titleOfMovieDesc,
-        date,
-        img,
-        id
+  
+    document.querySelector('.add-wishlist').style.transition = 'filter 0.5s ease';
+  document.querySelector('.add-wishlist').style.filter = 'brightness(1)';
+  const index2 = wishlistMovies.findIndex(i => i.id === idForURL);
+  if (index2 !== -1) {
+        document.querySelector('.add-wishlist').style.filter = 'brightness(0.4)';
+    } else {
+        document.querySelector('.add-wishlist').addEventListener('click', () => {
+
+        document.querySelector('.add-wishlist').style.filter = 'brightness(0.4)';
+        const titleOfMovieDesc = document.querySelector('.title-of-movie-desc').textContent;
+        const date = document.querySelector('.date-info-movie-desc').textContent;
+        const img = document.querySelector('.img-of-movie').src;
+        const movieDetails = document.querySelector('.movie-details');
+        const id = movieDetails.dataset.idDetails;
+        console.log(titleOfMovieDesc);
+        
+        const data = {
+            titleOfMovieDesc,
+            date,
+            img,
+            id
+        }
+        wishlistMovies.push(data);
+        localStorage.setItem('wishlistMovies', JSON.stringify(wishlistMovies));
+    });
     }
-    wishlistMovies.push(data);
-    localStorage.setItem('wishlistMovies', JSON.stringify(wishlistMovies));
-  });
 }
 
 function renderWishlist() {
