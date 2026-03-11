@@ -1,8 +1,8 @@
 import { requestSearch, requestDetails } from "./api.js";
 import { idForURL, setIdForURL } from "./render.js";
 
-const wishMovies = [];
-const favoriteMovies = [];
+const wishlistMovies = JSON.parse(localStorage.getItem('wishlistMovies')) || [];
+const favoritesMovies = JSON.parse(localStorage.getItem('favoritesMovies')) || [];
 
 const app = document.querySelector(".app");
 const searchMovies = document.querySelector('.search-movies');
@@ -95,9 +95,8 @@ function renderMovie(idForURL) {
         img,
         id
     }
-    favoriteMovies.push(data);
-    localStorage.setItem('favoritesMovies', JSON.stringify(favoriteMovies));
-    
+    favoritesMovies.push(data);
+    localStorage.setItem('favoritesMovies', JSON.stringify(favoritesMovies));
   });
   document.querySelector('.add-wishlist').addEventListener('click', () => {
     const titleOfMovieDesc = document.querySelector('.title-of-movie-desc').textContent;
@@ -113,8 +112,8 @@ function renderMovie(idForURL) {
         img,
         id
     }
-    wishMovies.push(data);
-    localStorage.setItem('wishlistMovies', JSON.stringify(wishMovies));
+    wishlistMovies.push(data);
+    localStorage.setItem('wishlistMovies', JSON.stringify(wishlistMovies));
   });
 }
 
@@ -131,21 +130,19 @@ function renderWishlist() {
 
 const containerOfFavorite = document.querySelector('.container-of-favorite');
 const containerOfWishlist = document.querySelector('.container-of-wishlist');
-const moviesFavorite = JSON.parse(localStorage.getItem('favoritesMovies')) || [];
-const moviesWishlist = JSON.parse(localStorage.getItem('wishlistMovies')) || [];
 
-for (let i in moviesFavorite) {
+for (let i in favoritesMovies) {
     containerOfFavorite.innerHTML += `
         <article class="movie-favorite">
-            <a class="card-favorite" href="#movie/${moviesFavorite[i].id}" data-id="${moviesFavorite[i].id}">
+            <a class="card-favorite" href="#movie/${favoritesMovies[i].id}" data-id="${favoritesMovies[i].id}">
                 <figure class="card-movie-favorite">
                     <div>
-                        <img class="img-preview-favorite" src="${moviesFavorite[i].img}" alt="preview of movie">
+                        <img class="img-preview-favorite" src="${favoritesMovies[i].img}" alt="preview of movie">
                     </div>
                     <div class="div-decs-favorite-wishlist">
                         <figcaption>
-                            <h2 class="title-of-movie-favorite">${moviesFavorite[i].titleOfMovieDesc}</h2>
-                            <h3 class="date-of-movie-favorite">${moviesFavorite[i].date}</h3>
+                            <h2 class="title-of-movie-favorite">${favoritesMovies[i].titleOfMovieDesc}</h2>
+                            <h3 class="date-of-movie-favorite">${favoritesMovies[i].date}</h3>
                         </figcaption>
                     </div>
                 </figure>
@@ -157,18 +154,18 @@ for (let i in moviesFavorite) {
     `;
 }
 
-for (let i in moviesWishlist) {
+for (let i in wishlistMovies) {
     containerOfWishlist.innerHTML += `
         <article class="movie-wishlist">
-            <a class="card-wishlist" href="#movie/${moviesWishlist[i].id}" data-id="${moviesWishlist[i].id}">
+            <a class="card-wishlist" href="#movie/${wishlistMovies[i].id}" data-id="${wishlistMovies[i].id}">
                 <figure class="card-movie-wishlist">
                     <div>
-                        <img class="img-preview-wishlist" src="${moviesWishlist[i].img}" alt="preview of movie">
+                        <img class="img-preview-wishlist" src="${wishlistMovies[i].img}" alt="preview of movie">
                     </div>
                     <div class="div-decs-wishlist-wishlist">
                         <figcaption>
-                            <h2 class="title-of-movie-wishlist">${moviesWishlist[i].titleOfMovieDesc}</h2>
-                            <h3 class="date-of-movie-wishlist">${moviesWishlist[i].date}</h3>
+                            <h2 class="title-of-movie-wishlist">${wishlistMovies[i].titleOfMovieDesc}</h2>
+                            <h3 class="date-of-movie-wishlist">${wishlistMovies[i].date}</h3>
                         </figcaption>
                     </div>
                 </figure>
@@ -182,17 +179,26 @@ for (let i in moviesWishlist) {
 
 containerOfFavorite.addEventListener('click', (e) => {
     const movie = e.target.closest('.card-favorite');
+    const btnDelCard = document.querySelector('.btn-del-card');
 
     if (movie) {
         setIdForURL(movie.dataset.id);
+    }
+    if (btnDelCard) {
+        const movieFavorite = document.querySelector('.movie-favorite');
     }
 });
 
 containerOfWishlist.addEventListener('click', (e) => {
     const movie = e.target.closest('.card-wishlist');
+    const btnDelCard = document.querySelector('.btn-del-card');
 
     if (movie) {
         setIdForURL(movie.dataset.id);
+    }
+    if (btnDelCard) {
+        const movieWishlist = document.querySelector('.movie-wishlist');
+        // MAKE LOGIC OF REMOVE ITEM AND LOCALSTORAGE REMOVING ITEM
     }
 });
   
