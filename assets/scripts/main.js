@@ -14,16 +14,7 @@ function renderHome() {
     <section class="home">
         <section class="recs-slider">
             <div class="container-recs">
-                <a class="random-recom" href="#movie/" data-id="">
-                    <figure class="card-random-recom">
-                        <img class="img-random-recom" src="" alt="preview of movie">
-                        <figcaption>
-                            <h2 class="title-of-recom"></h2>
-                            <h3 class="date-of-recom"></h3>
-                            <div class="div-rate-of-movie-desc"><div class="div-bar-and-perc"><span class="visual-rate-of-recom"></div></span><div class="percentage-of-rate-of-recom"></div></div>
-                        </figcaption>
-                    </figure>
-                </a>
+                
             </div>
         </section>
         <section class="list-movies">

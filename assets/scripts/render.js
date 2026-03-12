@@ -8,19 +8,23 @@ export function setIdForURL(newValue) {
 
 export function convertToUITop(data) {
     const lowAmount = [];
+    console.log(data);
+    
     for (let i = 0; i < 5; i++) {
+        const imgMovie = `${smallImgURL}${data.results[i].poster_path}`;
         const titleMovie = data.results[i].title;
         const dateMovie = makeDate(data.results[i].release_date);
         const rateMovie = Math.round(data.results[i].vote_average * 10);
+        const id = data.results[i].id;
         const readyData = {
+            imgMovie,
             titleMovie,
             dateMovie,
-            rateMovie
+            rateMovie,
+            id
         }
         lowAmount.push(readyData);
-    } 
-    
-    
+    }
     return { lowAmount };
 }
 
@@ -83,7 +87,21 @@ export function convertToUITrailer(data) {
 }
 
 export function renderTop(data) {
-    console.log(data.lowAmount[4]);
+    const container = document.querySelector('.container-recs');    
+    for (let i in data.lowAmount) {
+        container.innerHTML += `
+            <a class="random-recom" href="#movie/${data.lowAmount[i].id}" data-id="${data.lowAmount[i].id}">
+                <figure class="card-random-recom">
+                    <img class="img-random-recom" src="${data.lowAmount[i].imgMovie}" alt="preview of movie" onerror="this.onerror=null; this.src='./assets/icons/UI-front/err-load.svg';">
+                    <figcaption>
+                        <h2 class="title-of-recom">${data.lowAmount[i].titleMovie}</h2>
+                        <h3 class="date-of-recom">${data.lowAmount[i].dateMovie}</h3>
+                        <div class="div-rate-of-movie-desc"><div class="div-bar-and-perc"><span class="visual-rate-of-recom"></div></span><div class="percentage-of-rate-of-recom">${data.lowAmount[i].rateMovie}</div></div>
+                    </figcaption>
+                </figure>
+            </a>
+        `;
+    }
 }
 
 export function renderRecs(data) {
@@ -98,7 +116,6 @@ export function renderDetails(data) {
     const dateInfoMovieDesc = document.querySelector('.date-info-movie-desc');
     const genreOfMovieDesc = document.querySelector('.genre-of-movie-desc');
     const percentageOfRateOfRecom = document.querySelector('.percentage-of-rate-of-recom');
-    const visualRateOfRecom = document.querySelector('.visual-rate-of-recom');
     const reviewDetails = document.querySelector('.review-details');
 
     containerDetails.style.backgroundImage = `url(${imgURL}${data.bgImg})`;
@@ -109,16 +126,7 @@ export function renderDetails(data) {
     dateInfoMovieDesc.textContent = data.date;
     genreOfMovieDesc.textContent = data.genres;
     percentageOfRateOfRecom.textContent = `${data.rating}% Of Rating`;
-    if (data.rating >= 70) {
-        visualRateOfRecom.style.backgroundColor = 'rgb(12, 200, 12)';
-        visualRateOfRecom.style.transform = `translateX(${data.rating}%) scaleY(2)`;
-    } else if (data.rating >= 40) {
-        visualRateOfRecom.style.backgroundColor = '#E7E127';
-        visualRateOfRecom.style.transform = `translateX(${data.rating}%) scaleY(2)`;
-    } else {
-        visualRateOfRecom.style.backgroundColor = 'rgb(203, 36, 36)';
-        visualRateOfRecom.style.transform = `translateX(${data.rating}%) scaleY(2)`;
-    }
+    makeRate(data.rating);
     reviewDetails.textContent = data.overview;
 }
 
@@ -177,8 +185,6 @@ export function renderTrailer(data) {
     trailer.src = `https://www.youtube.com/embed/${data.key}`;
 }
 
-
-
 // small converters(can be repeat for some parts code)
 
 function makeDate(data) {
@@ -205,4 +211,18 @@ function makeDate(data) {
     dividedDate.splice(2, 0, monthName);
     const date = dividedDate.join(' ');
     return date;
+}
+
+function makeRate(data) {
+    const visualRateOfRecom = document.querySelector('.visual-rate-of-recom');
+    if (data >= 70) {
+        visualRateOfRecom.style.backgroundColor = 'rgb(12, 200, 12)';
+        visualRateOfRecom.style.transform = `translateX(${data}%) scaleY(2)`;
+    } else if (data >= 40) {
+        visualRateOfRecom.style.backgroundColor = '#E7E127';
+        visualRateOfRecom.style.transform = `translateX(${data}%) scaleY(2)`;
+    } else {
+        visualRateOfRecom.style.backgroundColor = 'rgb(203, 36, 36)';
+        visualRateOfRecom.style.transform = `translateX(${data}%) scaleY(2)`;
+    }
 }
