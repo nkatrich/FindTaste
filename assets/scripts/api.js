@@ -1,10 +1,22 @@
 import { baseURL, options } from "./config.js";
-import { convertToUIRecs, convertToUIDetails, convertToUISearch, convertToUITrailer, renderSearch, renderDetails, renderRecs, renderTrailer } from "./render.js";
+import { convertToUITop, convertToUIRecs, convertToUIDetails, convertToUISearch, convertToUITrailer, renderTop, renderSearch, renderDetails, renderRecs, renderTrailer } from "./render.js";
 
 const stateLoading = {
     page: 1,
     loading: false
 };
+
+async function requestTop() {
+    try {
+        const recsData = await fetch(`${baseURL}/movie/popular?language=en-US&page=1`, options);
+        const readyData = await recsData.json();
+        const validData = convertToUITop(readyData);
+        renderTop(validData);
+    } catch (err) {
+        
+    }
+}
+requestTop()
 
 async function requestRecs() {
     const maxPage = 75;
@@ -18,7 +30,7 @@ async function requestRecs() {
 
         }
     } catch (err) {
-
+        
     }
 }
 

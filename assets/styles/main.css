@@ -227,6 +227,13 @@ input[type="search"]::-moz-search-cancel-button {
     z-index: -1;
 }
 
+.container-recs {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .div-list-of-wish {
     position: fixed;
     right: 15px;

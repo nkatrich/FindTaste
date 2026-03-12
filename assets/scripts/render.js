@@ -6,16 +6,26 @@ export function setIdForURL(newValue) {
     idForURL = newValue;
 }
 
-export function convertToUIRecs(data) {
-    console.log(data);
-
-    console.log(data.results[0].title);
-    console.log(data.results[0].release_date);
-    console.log(Math.round(data.results[0].vote_average * 10));
+export function convertToUITop(data) {
+    const lowAmount = [];
+    for (let i = 0; i < 5; i++) {
+        const titleMovie = data.results[i].title;
+        const dateMovie = makeDate(data.results[i].release_date);
+        const rateMovie = Math.round(data.results[i].vote_average * 10);
+        const readyData = {
+            titleMovie,
+            dateMovie,
+            rateMovie
+        }
+        lowAmount.push(readyData);
+    } 
     
-    const titleMovie = data.results[0].title;
-    const dateMovie = data.results[0].release_date;
-    const rateMovie = Math.round(data.results[0].vote_average * 10);
+    
+    return { lowAmount };
+}
+
+export function convertToUIRecs(data) {
+    
 }
 
 export function convertToUIDetails(data) {
@@ -72,8 +82,12 @@ export function convertToUITrailer(data) {
     return { key };
 }
 
-export function renderRecs(data) {
+export function renderTop(data) {
+    console.log(data.lowAmount[4]);
+}
 
+export function renderRecs(data) {
+    
 }
 
 export function renderDetails(data) {

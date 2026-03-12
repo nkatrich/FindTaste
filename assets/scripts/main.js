@@ -8,24 +8,22 @@ const app = document.querySelector(".app");
 const searchMovies = document.querySelector('.search-movies');
 const listOfSuggested = document.querySelector('.div-list-of-suggested');
 
-window.location.hash = "#home";
-
 function renderHome() {
   window.location.hash = "#home";
   app.innerHTML = `
     <section class="home">
         <section class="recs-slider">
             <div class="container-recs">
-                <article class="random-recom">
+                <a class="random-recom" href="#movie/" data-id="">
                     <figure class="card-random-recom">
-                        <img src="" alt="preview of movie">
+                        <img class="img-random-recom" src="" alt="preview of movie">
                         <figcaption>
                             <h2 class="title-of-recom"></h2>
                             <h3 class="date-of-recom"></h3>
-                            <span class="rate-of-recom"><span class="visual-rate-of-recom"></span><span class="percentage-of-rate-of-recom"></span></span>
+                            <div class="div-rate-of-movie-desc"><div class="div-bar-and-perc"><span class="visual-rate-of-recom"></div></span><div class="percentage-of-rate-of-recom"></div></div>
                         </figcaption>
                     </figure>
-                </article>
+                </a>
             </div>
         </section>
         <section class="list-movies">
@@ -268,7 +266,7 @@ function renderAuthority() {
 function router() {
   const hash = window.location.hash;
 
-  if (hash === "#home") {
+  if (!hash || hash === "#home") {
     renderHome()
   } else if (hash.startsWith("#movie/")) {
     renderMovie(idForURL);
@@ -300,6 +298,3 @@ function debounce(fn, delay) {
         }, delay);
     }
 }
-
-// listOfSuggested.classList.add('shown');
-// requestSearch('the wrecking crew')
