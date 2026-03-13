@@ -1,4 +1,4 @@
-import { requestSearch, requestDetails } from "./api.js";
+import { requestSearch, requestDetails, requestTop } from "./api.js";
 import { idForURL, setIdForURL } from "./render.js";
 
 const wishlistMovies = JSON.parse(localStorage.getItem('wishlistMovies')) || [];
@@ -9,7 +9,6 @@ const searchMovies = document.querySelector('.search-movies');
 const listOfSuggested = document.querySelector('.div-list-of-suggested');
 
 function renderHome() {
-  window.location.hash = "#home";
   app.innerHTML = `
     <section class="home">
         <section class="recs-slider">
@@ -37,6 +36,7 @@ function renderHome() {
         </section>
     </section>
   `;
+  requestTop();
 }
 
 function renderMovie(idForURL) {
@@ -257,8 +257,8 @@ function renderAuthority() {
 function router() {
   const hash = window.location.hash;
 
-  if (!hash || hash === "#home") {
-    renderHome()
+  if (!hash) {
+    renderHome();
   } else if (hash.startsWith("#movie/")) {
     renderMovie(idForURL);
   } else if (hash === "#wishlist") {

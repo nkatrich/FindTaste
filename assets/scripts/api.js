@@ -6,7 +6,7 @@ const stateLoading = {
     loading: false
 };
 
-async function requestTop() {
+export async function requestTop() {
     try {
         const recsData = await fetch(`${baseURL}/movie/popular?language=en-US&page=1`, options);
         const readyData = await recsData.json();
@@ -16,7 +16,6 @@ async function requestTop() {
         
     }
 }
-requestTop()
 
 async function requestRecs() {
     const maxPage = 75;

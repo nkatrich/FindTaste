@@ -24,6 +24,7 @@ export function convertToUITop(data) {
             id
         }
         lowAmount.push(readyData);
+        
     }
     return { lowAmount };
 }
@@ -87,7 +88,8 @@ export function convertToUITrailer(data) {
 }
 
 export function renderTop(data) {
-    const container = document.querySelector('.container-recs');    
+    const container = document.querySelector('.container-recs');
+    
     for (let i in data.lowAmount) {
         container.innerHTML += `
             <a class="random-recom" href="#movie/${data.lowAmount[i].id}" data-id="${data.lowAmount[i].id}">
