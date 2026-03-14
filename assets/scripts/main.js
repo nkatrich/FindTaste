@@ -13,7 +13,16 @@ function renderHome() {
     <section class="home">
         <section class="recs-slider">
             <div class="container-recs">
-                
+                <a class="random-recom" href="#movie/" data-id="">
+                    <figure class="card-random-recom">
+                        <img class="img-random-recom" src="" alt="preview of movie" onerror="this.onerror=null; this.src='./assets/icons/UI-front/err-load.svg';">
+                        <figcaption>
+                            <h2 class="title-of-recom"></h2>
+                            <h3 class="date-of-recom"></h3>
+                            <div class="div-rate-of-movie-desc"><div class="div-bar-and-perc"><span class="visual-rate-of-recom"></div></span><div class="percentage-of-rate-of-recom"></div></div>
+                        </figcaption>
+                    </figure>
+                </a>
             </div>
         </section>
         <section class="list-movies">
@@ -62,7 +71,7 @@ function renderMovie(idForURL) {
                                 <button class="add-wishlist" type="button"><img src="./assets/icons/UI-front/tv.svg" alt="TV icon"></button>
                             </div>
                             <div class="div-watch-trailer">
-                                <iframe class="trailer" src="" frameborder="0" ></iframe>
+                                <iframe class="trailer" src="" frameborder="0"></iframe>
                             </div>
                         </div>
                     </article>

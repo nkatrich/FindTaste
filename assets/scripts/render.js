@@ -88,22 +88,32 @@ export function convertToUITrailer(data) {
 }
 
 export function renderTop(data) {
-    const container = document.querySelector('.container-recs');
-    
-    for (let i in data.lowAmount) {
-        container.innerHTML += `
-            <a class="random-recom" href="#movie/${data.lowAmount[i].id}" data-id="${data.lowAmount[i].id}">
-                <figure class="card-random-recom">
-                    <img class="img-random-recom" src="${data.lowAmount[i].imgMovie}" alt="preview of movie" onerror="this.onerror=null; this.src='./assets/icons/UI-front/err-load.svg';">
-                    <figcaption>
-                        <h2 class="title-of-recom">${data.lowAmount[i].titleMovie}</h2>
-                        <h3 class="date-of-recom">${data.lowAmount[i].dateMovie}</h3>
-                        <div class="div-rate-of-movie-desc"><div class="div-bar-and-perc"><span class="visual-rate-of-recom"></div></span><div class="percentage-of-rate-of-recom">${data.lowAmount[i].rateMovie}</div></div>
-                    </figcaption>
-                </figure>
-            </a>
-        `;
+    const randomRecom = document.querySelector('.random-recom');
+    const imgRandomRecom = document.querySelector('.img-random-recom');
+    const titleOfRecom = document.querySelector('.title-of-recom');
+    const dateOfRecom = document.querySelector('.date-of-recom');
+    const percentageOfRateOfRecom = document.querySelector('.percentage-of-rate-of-recom');
+
+    let i = 0;
+
+    function updateRecsTop() {
+        const movie = data.lowAmount[i];
+
+        randomRecom.setAttribute('href', `#movie/${movie.id}`);
+        randomRecom.setAttribute('data-id', `${movie.id}`);
+        imgRandomRecom.src = movie.imgMovie;
+        titleOfRecom.textContent = movie.titleMovie;
+        dateOfRecom.textContent = movie.dateMovie;
+        percentageOfRateOfRecom.textContent = movie.rateMovie;
+
+        i = (i + 1) % 5; 
     }
+
+    setInterval(updateRecsTop, 5000);
+    updateRecsTop();
+    randomRecom.addEventListener('click', () => {
+        idForURL = randomRecom.dataset.id;
+    });
 }
 
 export function renderRecs(data) {
@@ -159,17 +169,17 @@ export function renderSearch(data) {
             texts.appendChild(date);
             item.appendChild(texts);
             listOfSuggested.appendChild(item)
-
-            listOfSuggested.addEventListener('click', (e) => {
-                const movie = e.target.closest('.item-list-suggested');
-
-                if (movie) {
-                    idForURL = movie.dataset.id;
-                    const listOfSuggested = document.querySelector('.div-list-of-suggested');
-                    listOfSuggested.classList.remove('shown');
-                }
-            })
         }
+        listOfSuggested.addEventListener('click', (e) => {
+            const movie = e.target.closest('.item-list-suggested');
+
+            if (movie) {
+                idForURL = movie.dataset.id;
+                const listOfSuggested = document.querySelector('.div-list-of-suggested');
+                listOfSuggested.classList.remove('shown');
+            }
+        });
+        
     } else {
         const divNotFound = document.createElement('div');
         const notFound = document.createElement('h2');
