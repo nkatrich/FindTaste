@@ -228,10 +228,34 @@ input[type="search"]::-moz-search-cancel-button {
 }
 
 .container-recs {
+    width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.random-recom {
+    width: 600px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.random-recom img {
+    max-width: 100%;
+    height: 350px;
+    border-radius: var(--main-border-radius);
+}
+
+.random-recom figcaption {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    color: var(--light-clr);
 }
 
 .div-list-of-wish {
@@ -361,7 +385,7 @@ input[type="search"]::-moz-search-cancel-button {
     height: 100%;
     top: 0;
     left: -100%;
-    transition: transform 0.8s ease;
+    transition: transform 0.8s ease, background-color 0.8s ease;
 }
 
 .percentage-of-rate-of-recom {

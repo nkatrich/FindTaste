@@ -6,6 +6,8 @@ export function setIdForURL(newValue) {
     idForURL = newValue;
 }
 
+let timerRecs;
+
 export function convertToUITop(data) {
     const lowAmount = [];
     console.log(data);
@@ -104,12 +106,13 @@ export function renderTop(data) {
         imgRandomRecom.src = movie.imgMovie;
         titleOfRecom.textContent = movie.titleMovie;
         dateOfRecom.textContent = movie.dateMovie;
-        percentageOfRateOfRecom.textContent = movie.rateMovie;
+        percentageOfRateOfRecom.textContent = movie.rateMovie + '%';
+        makeRate(movie.rateMovie)
 
         i = (i + 1) % 5; 
     }
 
-    setInterval(updateRecsTop, 5000);
+    timerRecs = setInterval(updateRecsTop, 5000);
     updateRecsTop();
     randomRecom.addEventListener('click', () => {
         idForURL = randomRecom.dataset.id;
@@ -121,6 +124,8 @@ export function renderRecs(data) {
 }
 
 export function renderDetails(data) {
+    clearInterval(timerRecs);
+
     const containerDetails = document.querySelector('.container-details');
     const imgOfMovie = document.querySelector('.img-of-movie');
     const titleOfMovieDesc = document.querySelector('.title-of-movie-desc');
