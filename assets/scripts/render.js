@@ -100,7 +100,11 @@ export function renderTop(data) {
 
     function updateRecsTop() {
         const movie = data.lowAmount[i];
-
+        
+        imgRandomRecom.classList.remove('an');
+        titleOfRecom.classList.remove('an');
+        dateOfRecom.classList.remove('an');
+        
         randomRecom.setAttribute('href', `#movie/${movie.id}`);
         randomRecom.setAttribute('data-id', `${movie.id}`);
         imgRandomRecom.src = movie.imgMovie;
@@ -108,11 +112,19 @@ export function renderTop(data) {
         dateOfRecom.textContent = movie.dateMovie;
         percentageOfRateOfRecom.textContent = movie.rateMovie + '%';
         makeRate(movie.rateMovie)
+        void imgRandomRecom.offsetWidth;
+        void titleOfRecom.offsetWidth; 
+        void dateOfRecom.offsetWidth; 
+        imgRandomRecom.classList.add('an');
+        titleOfRecom.classList.add('an');
+        dateOfRecom.classList.add('an');
+        
+        
 
         i = (i + 1) % 5; 
     }
 
-    timerRecs = setInterval(updateRecsTop, 5000);
+    timerRecs = setInterval(updateRecsTop, 6000);
     updateRecsTop();
     randomRecom.addEventListener('click', () => {
         idForURL = randomRecom.dataset.id;
