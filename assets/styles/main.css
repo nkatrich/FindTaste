@@ -432,6 +432,33 @@ input[type="search"]::-moz-search-cancel-button {
     }
 }
 
+/* recs list */
+
+.list-movies {
+    margin: 30px 0;
+}
+
+.container-list-movies {
+    width: 100%;
+    height: auto;
+}
+
+.cards-of-recs-list {
+
+}
+
+.div-title-recomindations-list {
+    display: flex;
+    justify-content: center;
+}
+
+.title-recomindations-list {
+    background-color: var(--accent-clr);
+    padding: 5px;
+    border-radius: var(--main-border-radius);
+    font-size: var(--font-size-titles-h2);
+}
+
 .div-list-of-wish {
     position: fixed;
     right: 15px;

@@ -3,7 +3,8 @@ import { convertToUITop, convertToUIRecs, convertToUIDetails, convertToUISearch,
 import { skeletonCard} from "./main.js";
 
 const stateLoading = {
-    page: 1,
+    page: 2,
+    maxPage: 76,
     loading: false
 };
 
@@ -21,10 +22,9 @@ export async function requestTop() {
 }
 
 async function requestRecs() {
-    const maxPage = 75;
     try {
-        if (stateLoading.page <= maxPage) {
-            const recsData = await fetch(`${baseURL}/movie/popular?language=en-US&page=${stateLoading.page}`, options);
+        if (stateLoading.page <= stateLoading.maxPage) {
+            const recsData = await fetch(`${baseURL}/movie/popular?language=en-US&page=${String(stateLoading.page)}`, options);
             const readyData = await recsData.json();
             const validData = convertToUIRecs(readyData);
             renderRecs(validData);
@@ -35,6 +35,7 @@ async function requestRecs() {
         
     }
 }
+requestRecs()
 
 export async function requestDetails(id) {
     try {

@@ -10,7 +10,7 @@ let timerRecs;
 
 export function convertToUITop(data) {
     const lowAmount = [];
-    console.log(data);
+    // console.log(data);
     
     for (let i = 0; i < 5; i++) {
         const imgMovie = `${smallImgURL}${data.results[i].poster_path}`;
@@ -32,7 +32,24 @@ export function convertToUITop(data) {
 }
 
 export function convertToUIRecs(data) {
+    const amountResults = data.results.length;
+
+    const titles = [];
+    const imgs = [];
+    const dates = [];
+    const rates = [];
+    const idsMovies = [];
     
+    for (let i = 0; i < data.results.length; i++) {
+        titles.push(data.results[i].title);
+        imgs.push(data.results[i].poster_path);
+        const date = makeDate(data.results[i].release_date);
+        dates.push(date);
+        rates.push(Math.round(data.results[i].vote_average * 10));
+        idsMovies.push(data.results[i].id);
+    }
+
+    return { data, amountResults, titles, imgs, dates, rates, idsMovies };
 }
 
 export function convertToUIDetails(data) {
@@ -132,7 +149,18 @@ export function renderTop(data) {
 }
 
 export function renderRecs(data) {
-    
+    console.log(data);
+    const percentageOfRateOfRecom = document.querySelector('.percentage-of-rate-of-recom');
+    percentageOfRateOfRecom.textContent = movie.rateMovie + '%';
+    makeRate(data.rateMovie);
+    const fragment = document.createDocumentFragment();
+
+    movies.forEach(movie => {
+        const card = createMovieCard(movie);
+        fragment.append(card);
+    })
+
+    movieContainer.append(fragment);
 }
 
 export function renderDetails(data) {
