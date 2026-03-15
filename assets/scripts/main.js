@@ -1,6 +1,12 @@
 import { requestSearch, requestDetails, requestTop } from "./api.js";
 import { idForURL, setIdForURL } from "./render.js";
 
+export const skeletonCard = document.querySelector('.skeleton-card');
+skeletonCard.classList.add('an');
+window.onload = () => {
+    skeletonCard.classList.remove('an');
+};
+
 const wishlistMovies = JSON.parse(localStorage.getItem('wishlistMovies')) || [];
 const favoritesMovies = JSON.parse(localStorage.getItem('favoritesMovies')) || [];
 

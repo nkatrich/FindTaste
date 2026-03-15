@@ -1,10 +1,13 @@
 import { baseURL, options } from "./config.js";
 import { convertToUITop, convertToUIRecs, convertToUIDetails, convertToUISearch, convertToUITrailer, renderTop, renderSearch, renderDetails, renderRecs, renderTrailer } from "./render.js";
+import { skeletonCard} from "./main.js";
 
 const stateLoading = {
     page: 1,
     loading: false
 };
+
+// loaders vars
 
 export async function requestTop() {
     try {
@@ -35,9 +38,11 @@ async function requestRecs() {
 
 export async function requestDetails(id) {
     try {
+        skeletonCard.classList.add('an');
         const detailsData = await fetch(`${baseURL}/movie/${id}`, options);
         const readyData = await detailsData.json();
         const validData = convertToUIDetails(readyData);
+        skeletonCard.classList.remove('an');
         renderDetails(validData);
         requestTrailer(id);
     } catch (err) {
