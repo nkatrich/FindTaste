@@ -7,12 +7,16 @@ window.onload = () => {
     skeletonCard.classList.remove('an');
 };
 
+const body = document.body;
+
 const wishlistMovies = JSON.parse(localStorage.getItem('wishlistMovies')) || [];
 const favoritesMovies = JSON.parse(localStorage.getItem('favoritesMovies')) || [];
 
 const app = document.querySelector(".app");
 const searchMovies = document.querySelector('.search-movies');
 const listOfSuggested = document.querySelector('.div-list-of-suggested');
+
+const toUp = document.querySelector('.toUp');
 
 function renderHome() {
   app.innerHTML = `
@@ -308,3 +312,22 @@ function debounce(fn, delay) {
         }, delay);
     }
 }
+// scroll events
+
+document.addEventListener('scroll', () => {
+    const currentPos = window.pageYOffset;
+    
+    if (currentPos < 1000) {
+        toUp.style.display = 'none';
+    }
+    else {
+        toUp.style.display = 'flex';
+    }
+})
+
+toUp.addEventListener('click', (e) => {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+    })
+});

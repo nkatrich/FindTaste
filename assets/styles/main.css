@@ -2,6 +2,7 @@ body {
     background-color: var(--document-bg);
     color: var(--light-clr);
     font-family: 'Roboto', sans-serif;
+    scroll-behavior: smooth;
 }
 
 .container {
@@ -354,6 +355,12 @@ input[type="search"]::-moz-search-cancel-button {
 }
 
 .title-of-recom {
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 1;
+    line-clamp: 1;
+   -webkit-box-orient: vertical;
     opacity: 1;
     font-size: var(--font-size-titles-h2);
     animation: titleRecsTop2 0.9s ease 1 0.3s forwards;
@@ -502,6 +509,12 @@ input[type="search"]::-moz-search-cancel-button {
 
 .card-title-of-recom {
     font-size: var(--font-size-titles-h2);
+    overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 1;
+    line-clamp: 1;
+   -webkit-box-orient: vertical;
 }
 
 .card-date-of-recom {
@@ -510,6 +523,25 @@ input[type="search"]::-moz-search-cancel-button {
 
 .percentage-of-rate-of-recom {
     color: var(--light-clr);
+}
+
+.toUp {
+    position: fixed;
+    right: 18px;
+    bottom: 90px;
+    padding: 10px;
+    background-color: var(--accent-clr);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: opacity 0.9s ease;
+}
+
+.toUp img {
+    width: 35px;
+    height: auto;
 }
 
 .div-list-of-wish {
