@@ -435,7 +435,9 @@ input[type="search"]::-moz-search-cancel-button {
 /* recs list */
 
 .list-movies {
-    margin: 30px 0;
+    width: 100%;
+    max-width: 1200px;
+    margin: 30px auto;
 }
 
 .container-list-movies {
@@ -444,7 +446,12 @@ input[type="search"]::-moz-search-cancel-button {
 }
 
 .cards-of-recs-list {
-
+    width: 100%;
+    margin: 30px 0;
+    display: grid;
+    place-items: center;
+    grid-template-columns: minmax(400px, 1fr) minmax(400px, 1fr);
+    gap: 60px;
 }
 
 .div-title-recomindations-list {
@@ -457,6 +464,34 @@ input[type="search"]::-moz-search-cancel-button {
     padding: 5px;
     border-radius: var(--main-border-radius);
     font-size: var(--font-size-titles-h2);
+}
+
+.card-recom {
+    background-color: var(--accent-2-clr);
+    width: 100%;
+    min-width: 300px;
+    max-width: 500px;
+    padding: 15px;
+    border-radius: var(--main-border-radius);
+}
+
+.card-img-of-recom {
+    width: 100%;
+    max-width: 500px;
+    height: 350px;
+    border-radius: var(--main-border-radius);
+}
+
+.card-title-of-recom {
+    font-size: var(--font-size-titles-h2);
+    margin: 5px 0;
+    text-align: center;
+}
+
+.card-date-of-recom {
+    font-size: var(--font-size-titles-h3);
+    margin: 5px 0;
+    text-align: center;
 }
 
 .div-list-of-wish {
@@ -566,6 +601,7 @@ input[type="search"]::-moz-search-cancel-button {
 
 .div-rate-of-movie-desc {
     display: flex;
+    justify-content: center;
     gap: 10px;
 }
 
@@ -580,7 +616,7 @@ input[type="search"]::-moz-search-cancel-button {
     overflow: hidden;
 }
 
-.visual-rate-of-recom {
+.visual-rate-of-recom, .card-visual-rate-of-recom {
     position: absolute;
     width: 100%;
     height: 100%;

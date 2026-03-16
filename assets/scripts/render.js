@@ -153,14 +153,24 @@ export function renderRecs(data) {
     const percentageOfRateOfRecom = document.querySelector('.percentage-of-rate-of-recom');
     percentageOfRateOfRecom.textContent = movie.rateMovie + '%';
     makeRate(data.rateMovie);
+
     const fragment = document.createDocumentFragment();
 
-    movies.forEach(movie => {
-        const card = createMovieCard(movie);
-        fragment.append(card);
-    })
+    for (let i in data.amountResults) {
+        const a = document.createElement('a');
+        const img = document.createElement('img');
+        const h2 = document.createElement('h2');
+        const h3 = document.createElement('h3');
+        const cardRateOfRecom = document.createElement('span');
+        const cardVisualRateOfRecom = document.createElement('span');
+        const cardPercentageOfRateOfRecom = document.createElement('span');
 
-    movieContainer.append(fragment);
+        
+
+        fragment.appendChild();
+    }
+
+    document.querySelector('.cards-of-recs-list').appendChild(fragment);
 }
 
 export function renderDetails(data) {
