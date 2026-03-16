@@ -316,6 +316,12 @@ input[type="search"]::-moz-search-cancel-button {
     align-items: center;
 }
 
+.card-random-recom {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .random-recom {
     width: 600px;
     height: 100%;
@@ -328,8 +334,11 @@ input[type="search"]::-moz-search-cancel-button {
 .img-random-recom {
     max-width: 100%;
     height: 350px;
+    display: flex;
+    justify-content: center;
     border-radius: var(--main-border-radius);
     opacity: 1;
+    object-fit: cover;
     animation: imgRecsTop2 0.9s ease 0.6s 1 forwards;
 }
 
@@ -450,8 +459,8 @@ input[type="search"]::-moz-search-cancel-button {
     margin: 30px 0;
     display: grid;
     place-items: center;
-    grid-template-columns: minmax(400px, 1fr) minmax(400px, 1fr);
-    gap: 60px;
+    grid-template-columns: minmax(400px, 1fr) minmax(400px, 1fr) minmax(400px, 1fr);
+    gap: 30px;
 }
 
 .div-title-recomindations-list {
@@ -470,28 +479,37 @@ input[type="search"]::-moz-search-cancel-button {
     background-color: var(--accent-2-clr);
     width: 100%;
     min-width: 300px;
-    max-width: 500px;
+    max-width: 400px;
     padding: 15px;
     border-radius: var(--main-border-radius);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
 }
 
 .card-img-of-recom {
     width: 100%;
-    max-width: 500px;
-    height: 350px;
+    max-width: 200px;
     border-radius: var(--main-border-radius);
+}
+
+.card-title-of-recom, .card-date-of-recom {
+    color: var(--light-clr);
+    margin: 5px 0;
+    text-align: center;
 }
 
 .card-title-of-recom {
     font-size: var(--font-size-titles-h2);
-    margin: 5px 0;
-    text-align: center;
 }
 
 .card-date-of-recom {
     font-size: var(--font-size-titles-h3);
-    margin: 5px 0;
-    text-align: center;
+}
+
+.percentage-of-rate-of-recom {
+    color: var(--light-clr);
 }
 
 .div-list-of-wish {

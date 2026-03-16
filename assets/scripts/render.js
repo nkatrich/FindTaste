@@ -42,7 +42,8 @@ export function convertToUIRecs(data) {
     
     for (let i = 0; i < data.results.length; i++) {
         titles.push(data.results[i].title);
-        imgs.push(data.results[i].poster_path);
+        const imgMovie = `${smallImgURL}${data.results[i].poster_path}`;
+        imgs.push(imgMovie);
         const date = makeDate(data.results[i].release_date);
         dates.push(date);
         rates.push(Math.round(data.results[i].vote_average * 10));
@@ -150,24 +151,53 @@ export function renderTop(data) {
 
 export function renderRecs(data) {
     console.log(data);
-    const percentageOfRateOfRecom = document.querySelector('.percentage-of-rate-of-recom');
-    percentageOfRateOfRecom.textContent = movie.rateMovie + '%';
-    makeRate(data.rateMovie);
-
     const fragment = document.createDocumentFragment();
 
-    for (let i in data.amountResults) {
+    for (let i = 0; i < 20; i++) {
         const a = document.createElement('a');
         const img = document.createElement('img');
         const h2 = document.createElement('h2');
         const h3 = document.createElement('h3');
-        const cardRateOfRecom = document.createElement('span');
+        const cardRateOfRecom = document.createElement('div');
+        const divBarAndPerc = document.createElement('div');
         const cardVisualRateOfRecom = document.createElement('span');
         const cardPercentageOfRateOfRecom = document.createElement('span');
 
-        
+        a.className = 'card-recom';
+        img.className = 'card-img-of-recom';
+        h2.className = 'card-title-of-recom';
+        h3.className = 'card-date-of-recom';
+        cardRateOfRecom.className = 'div-rate-of-movie-desc';
+        divBarAndPerc.className = 'div-bar-and-perc';
+        cardVisualRateOfRecom.className = 'card-visual-rate-of-recom';
+        cardPercentageOfRateOfRecom.className = 'percentage-of-rate-of-recom';
 
-        fragment.appendChild();
+        a.href = `#movie/${data.idsMovies[i]}`;
+        a.dataset.id = data.idsMovies[i];
+        img.src = data.imgs[i];
+        h2.textContent = data.titles[i];
+        h3.textContent = data.dates[i];
+        cardPercentageOfRateOfRecom.textContent = data.rates[i] + '%';
+        if (data.rates[i] >= 70) {
+            cardVisualRateOfRecom.style.backgroundColor = 'rgb(12, 200, 12)';
+            cardVisualRateOfRecom.style.transform = `translateX(${data.rates[i]}%) scaleY(2)`;
+        } else if (data.rates[i] >= 40) {
+            cardVisualRateOfRecom.style.backgroundColor = '#E7E127';
+            cardVisualRateOfRecom.style.transform = `translateX(${data.rates[i]}%) scaleY(2)`;
+        } else {
+           cardVisualRateOfRecom.style.backgroundColor = 'rgb(203, 36, 36)';
+           cardVisualRateOfRecom.style.transform = `translateX(${data.rates[i]}%) scaleY(2)`;
+        }
+
+        a.appendChild(img);
+        a.appendChild(h2);
+        a.appendChild(h3);
+        cardRateOfRecom.appendChild(divBarAndPerc);
+        divBarAndPerc.appendChild(cardVisualRateOfRecom);
+        cardRateOfRecom.appendChild(cardPercentageOfRateOfRecom);
+        a.appendChild(cardRateOfRecom);
+
+        fragment.appendChild(a);
     }
 
     document.querySelector('.cards-of-recs-list').appendChild(fragment);

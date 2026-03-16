@@ -34,32 +34,7 @@ function renderHome() {
         <section class="list-movies">
             <div class="container-list-movies">
                 <div class="div-title-recomindations-list"><h2 class="title-recomindations-list">Recommendations</h2></div>
-                    <div class="cards-of-recs-list">
-                        <a class="card-recom">
-                            <img class="card-img-of-recom" src="./assets/images/bg-api/tmdb.webp" alt="preview of movie">
-                            <h2 class="card-title-of-recom">The wrecking crew</h2>
-                            <h3 class="card-date-of-recom">2026 12 Februrary</h3>
-                            <div class="div-rate-of-movie-desc"><div class="div-bar-and-perc"><span class="card-visual-rate-of-recom"></div></span><div class="percentage-of-rate-of-recom"></div></div>
-                        </a>
-                        <a class="card-recom">
-                            <img class="card-img-of-recom" src="./assets/images/bg-api/tmdb.webp" alt="preview of movie">
-                            <h2 class="card-title-of-recom">The wrecking crew</h2>
-                            <h3 class="card-date-of-recom">2026 12 Februrary</h3>
-                            <div class="div-rate-of-movie-desc"><div class="div-bar-and-perc"><span class="card-visual-rate-of-recom"></div></span><div class="percentage-of-rate-of-recom"></div></div>
-                        </a>
-                        <a class="card-recom">
-                            <img class="card-img-of-recom" src="./assets/images/bg-api/tmdb.webp" alt="preview of movie">
-                            <h2 class="card-title-of-recom">The wrecking crew</h2>
-                            <h3 class="card-date-of-recom">2026 12 Februrary</h3>
-                            <div class="div-rate-of-movie-desc"><div class="div-bar-and-perc"><span class="card-visual-rate-of-recom"></div></span><div class="percentage-of-rate-of-recom"></div></div>
-                        </a>
-                        <a class="card-recom">
-                            <img class="card-img-of-recom" src="./assets/images/bg-api/tmdb.webp" alt="preview of movie">
-                            <h2 class="card-title-of-recom">The wrecking crew</h2>
-                            <h3 class="card-date-of-recom">2026 12 Februrary</h3>
-                            <div class="div-rate-of-movie-desc"><div class="div-bar-and-perc"><span class="card-visual-rate-of-recom"></div></span><div class="percentage-of-rate-of-recom"></div></div>
-                        </a>
-                    </div>
+                    <div class="cards-of-recs-list"></div>
                 <div class="observer"></div>
             </div>
         </section>
