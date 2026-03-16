@@ -747,6 +747,7 @@ input[type="search"]::-moz-search-cancel-button {
     align-items: center;
     gap: 30px;
     margin: 30px 0;
+    padding: 15px;
 }
 
 .card-movie-favorite, .card-movie-wishlist {
@@ -775,7 +776,8 @@ input[type="search"]::-moz-search-cancel-button {
 
 .card-favorite, .card-wishlist {
     width: 100%;
-    max-width: 600px;
+    min-width: 300px;
+    max-width: 500px;
     background-color: var(--accent-2-clr);
     border-radius: var(--main-border-radius);
     color: var(--light-clr);
