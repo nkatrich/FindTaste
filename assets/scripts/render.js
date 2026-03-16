@@ -176,6 +176,7 @@ export function renderRecs(data) {
         a.href = `#movie/${data.idsMovies[i]}`;
         a.dataset.id = data.idsMovies[i];
         img.src = data.imgs[i];
+        img.setAttribute('onerror', `this.onerror=null; this.src='./assets/icons/UI-front/err-load.svg';`);
         h2.textContent = data.titles[i];
         h3.textContent = data.dates[i];
         cardPercentageOfRateOfRecom.textContent = data.rates[i] + '%';
@@ -260,7 +261,6 @@ export function renderSearch(data) {
             const movie = e.target.closest('.item-list-suggested');
 
             if (movie) {
-                idForURL = movie.dataset.id;
                 const listOfSuggested = document.querySelector('.div-list-of-suggested');
                 listOfSuggested.classList.remove('shown');
             }

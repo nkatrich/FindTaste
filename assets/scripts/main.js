@@ -7,16 +7,12 @@ window.onload = () => {
     skeletonCard.classList.remove('an');
 };
 
-const body = document.body;
-
 const wishlistMovies = JSON.parse(localStorage.getItem('wishlistMovies')) || [];
 const favoritesMovies = JSON.parse(localStorage.getItem('favoritesMovies')) || [];
 
 const app = document.querySelector(".app");
 const searchMovies = document.querySelector('.search-movies');
 const listOfSuggested = document.querySelector('.div-list-of-suggested');
-
-const toUp = document.querySelector('.toUp');
 
 function renderHome() {
   app.innerHTML = `
@@ -43,8 +39,11 @@ function renderHome() {
             </div>
         </section>
     </section>
+    <button class="toUp" type="button"><img src="./assets/icons/UI-front/arrow.svg" alt="Arrow up - define that you can get into top of the web page"></button>
   `;
   requestTop();
+
+  // scroll events
   const optionsObserver = {
       rootMargin: '600px'
       };
@@ -59,6 +58,30 @@ function renderHome() {
       
       const observer = new IntersectionObserver(callbackObserver, optionsObserver);
       observer.observe(document.querySelector('.observer'));
+
+  const toUp = document.querySelector('.toUp');
+
+    document.addEventListener('scroll', () => {
+        const currentPos = window.pageYOffset;
+        
+        if (currentPos <= 1000) {
+            unShow();
+        }
+        else {
+            show();
+        }
+    })
+
+    toUp.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    });
+
+    const unShow = () => toUp.style.display = 'none';
+    const show = () => toUp.style.display = 'flex';
+    unShow();
 }
 
 function renderMovie(idForURL) {
@@ -265,7 +288,7 @@ function renderAuthority() {
     <section class="about-API">
                 <article>
                     <img src="./assets/images/bg-api/tmdb.webp" alt="The logotype of 'The Movie DataBase'(TMDB)" width="300" height="300">
-                    <p class="p-about-api">In the 'FindTaste', we use third-party API, name is <a href="https://www.themoviedb.org/" target="_blank">'The Movie DataBase'(TMDB)</a></p>
+                    <p class="p-about-api">In the FindTaste, we use third-party API, name is <a href="https://www.themoviedb.org/" target="_blank">The Movie DataBase(TMDB)</a></p>
                     <p class="p-about-developer">As well, follow me in GitHub and Telegram channel:</p>
                     <div class="socials-media">
                         <a href="https://github.com/nkatrich" target="_blank"><img src="./assets/icons/socials-media/GitHub.svg" alt="GitHub Logotype" width="70" height="70"></a>
@@ -312,22 +335,3 @@ function debounce(fn, delay) {
         }, delay);
     }
 }
-// scroll events
-
-document.addEventListener('scroll', () => {
-    const currentPos = window.pageYOffset;
-    
-    if (currentPos < 1000) {
-        toUp.style.display = 'none';
-    }
-    else {
-        toUp.style.display = 'flex';
-    }
-})
-
-toUp.addEventListener('click', (e) => {
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-    })
-});

@@ -802,3 +802,53 @@ input[type="search"]::-moz-search-cancel-button {
     justify-content: center;
     align-items: center;
 }
+
+.about-API {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 15px;
+}
+
+.about-API article {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+article img {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+}
+
+.p-about-api, .p-about-developer {
+    font-size: var(--font-size-p);
+    text-align: center;
+}
+
+.p-about-api {
+    margin-bottom: 30px;
+}
+
+.p-about-api a {
+    font-weight: var(--marked-bold);
+    background: -webkit-linear-gradient(0deg, #90cea1, #01b4e4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.p-about-developer {
+    font-weight: var(--marked-bold);
+}
+
+.socials-media {
+    display: flex;
+    gap: 15px;
+}
+
+.socials-media img {
+    width: 80px;
+    height: 80px;
+}
