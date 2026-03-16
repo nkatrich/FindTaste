@@ -1,4 +1,4 @@
-import { requestSearch, requestDetails, requestTop } from "./api.js";
+import { requestSearch, requestDetails, requestTop, requestRecs } from "./api.js";
 import { idForURL, setIdForURL } from "./render.js";
 
 export const skeletonCard = document.querySelector('.skeleton-card');
@@ -41,6 +41,20 @@ function renderHome() {
     </section>
   `;
   requestTop();
+  const optionsObserver = {
+      rootMargin: '600px'
+      };
+  
+      const callbackObserver = (entries) => {
+      entries.forEach(entry => {
+          if (entry.isIntersecting) {
+              requestRecs();
+          }
+      });
+      };
+      
+      const observer = new IntersectionObserver(callbackObserver, optionsObserver);
+      observer.observe(document.querySelector('.observer'));
 }
 
 function renderMovie(idForURL) {

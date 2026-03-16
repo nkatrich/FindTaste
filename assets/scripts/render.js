@@ -1,4 +1,5 @@
 import { imgURL, smallImgURL } from "./config.js";
+import { requestRecs } from "./api.js";
 
 export let idForURL = 0;
 

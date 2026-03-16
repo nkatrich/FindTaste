@@ -2,8 +2,8 @@ import { baseURL, options } from "./config.js";
 import { convertToUITop, convertToUIRecs, convertToUIDetails, convertToUISearch, convertToUITrailer, renderTop, renderSearch, renderDetails, renderRecs, renderTrailer } from "./render.js";
 import { skeletonCard} from "./main.js";
 
-const stateLoading = {
-    page: 2,
+export const stateLoading = {
+    page: 1,
     maxPage: 76,
     loading: false
 };
@@ -21,9 +21,10 @@ export async function requestTop() {
     }
 }
 
-async function requestRecs() {
+export async function requestRecs() {
     try {
         if (stateLoading.page <= stateLoading.maxPage) {
+            stateLoading.page++;
             const recsData = await fetch(`${baseURL}/movie/popular?language=en-US&page=${String(stateLoading.page)}`, options);
             const readyData = await recsData.json();
             const validData = convertToUIRecs(readyData);
@@ -35,7 +36,6 @@ async function requestRecs() {
         
     }
 }
-requestRecs()
 
 export async function requestDetails(id) {
     try {
