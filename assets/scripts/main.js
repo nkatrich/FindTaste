@@ -275,7 +275,8 @@ function router() {
   if (!hash) {
     renderHome();
   } else if (hash.startsWith("#movie/")) {
-    renderMovie(idForURL);
+    const id = hash.split("/")[1];
+    renderMovie(id);
   } else if (hash === "#wishlist") {
     renderWishlist();
   } else if (hash === "#authority") {
