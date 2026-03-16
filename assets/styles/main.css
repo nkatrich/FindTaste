@@ -472,7 +472,7 @@ input[type="search"]::-moz-search-cancel-button {
     padding: 15px;
     display: grid;
     place-items: center;
-    
+    grid-template-columns: minmax(300px, 1fr);
     gap: 30px;
 }
 
@@ -863,13 +863,17 @@ article img {
 }
 
 @media (min-width: 768px) {
-    
+    .cards-of-recs-list {
+        grid-template-columns: minmax(300px, 1fr) minmax(300px, 1fr);
+    }
 
 
 }
 
 @media (min-width: 1024px) {
-    
+    .cards-of-recs-list {
+        grid-template-columns: minmax(300px, 1fr) minmax(300px, 1fr) minmax(300px, 1fr);
+    }
 
     .header-container {
         grid-template-areas: "part-1 part-2";
