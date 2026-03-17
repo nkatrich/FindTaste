@@ -1,5 +1,5 @@
 import { requestSearch, requestDetails, requestTop, requestRecs } from "./api.js";
-import { idForURL, setIdForURL } from "./render.js";
+import { setIdForURL } from "./render.js";
 
 export const skeletonCard = document.querySelector('.skeleton-card');
 skeletonCard.classList.add('an');
@@ -115,23 +115,23 @@ function renderMovie(idForURL) {
             </section>
   `;
   requestDetails(idForURL);
-  document.querySelector('.add-favorite').style.transition = 'filter 0.6s ease';
-  document.querySelector('.add-favorite').style.filter = 'brightness(1)';
-  document.querySelector('.add-favorite').style.cursor = 'pointer';
+  const addFavorite = document.querySelector('.add-favorite');
+  addFavorite.style.transition = 'filter 0.6s ease';
+  addFavorite.style.filter = 'brightness(1)';
+  addFavorite.style.cursor = 'pointer';
   const index1 = favoritesMovies.findIndex(i => i.id === idForURL);
     if (index1 !== -1) {
-        document.querySelector('.add-favorite').style.filter = 'brightness(0.4)';
-        document.querySelector('.add-favorite').style.cursor = 'default';
+        addFavorite.style.filter = 'brightness(0.4)';
+        addFavorite.style.cursor = 'default';
     } else {
-        document.querySelector('.add-favorite').addEventListener('click', () => {
-        document.querySelector('.add-favorite').style.cursor = 'default';
-        document.querySelector('.add-favorite').style.filter = 'brightness(0.4)';
+        addFavorite.addEventListener('click', () => {
+        addFavorite.style.cursor = 'default';
+        addFavorite.style.filter = 'brightness(0.4)';
         const titleOfMovieDesc = document.querySelector('.title-of-movie-desc').textContent;
         const date = document.querySelector('.date-info-movie-desc').textContent;
         const img = document.querySelector('.img-of-movie').src;
         const movieDetails = document.querySelector('.movie-details');
         const id = movieDetails.dataset.idDetails;
-        console.log(titleOfMovieDesc);
         
         const data = {
             titleOfMovieDesc,
@@ -144,24 +144,23 @@ function renderMovie(idForURL) {
     });
     }
   
-    document.querySelector('.add-wishlist').style.transition = 'filter 0.6s ease';
-  document.querySelector('.add-wishlist').style.filter = 'brightness(1)';
-  document.querySelector('.add-wishlist').style.cursor = 'pointer';
-  const index2 = wishlistMovies.findIndex(i => i.id === idForURL);
-  if (index2 !== -1) {
-        document.querySelector('.add-wishlist').style.cursor = 'default';
-        document.querySelector('.add-wishlist').style.filter = 'brightness(0.4)';
+    const addWishlist = document.querySelector('.add-wishlist');
+    addWishlist.style.transition = 'filter 0.6s ease';
+    addWishlist.style.filter = 'brightness(1)';
+    addWishlist.style.cursor = 'pointer';
+    const index2 = wishlistMovies.findIndex(i => i.id === idForURL);
+    if (index2 !== -1) {
+        addWishlist.style.cursor = 'default';
+        addWishlist.style.filter = 'brightness(0.4)';
     } else {
-        document.querySelector('.add-wishlist').addEventListener('click', () => {
-        
-        document.querySelector('.add-wishlist').style.cursor = 'default';
-        document.querySelector('.add-wishlist').style.filter = 'brightness(0.4)';
+        addWishlist.addEventListener('click', () => {
+        addWishlist.style.cursor = 'default';
+        addWishlist.style.filter = 'brightness(0.4)';
         const titleOfMovieDesc = document.querySelector('.title-of-movie-desc').textContent;
         const date = document.querySelector('.date-info-movie-desc').textContent;
         const img = document.querySelector('.img-of-movie').src;
         const movieDetails = document.querySelector('.movie-details');
         const id = movieDetails.dataset.idDetails;
-        console.log(titleOfMovieDesc);
         
         const data = {
             titleOfMovieDesc,
@@ -234,7 +233,6 @@ for (let i in wishlistMovies) {
         </article>
     `;
 }
-console.log(favoritesMovies);
 
 containerOfFavorite.addEventListener('click', (e) => {
     const btnDelCard = e.target.closest('.btn-del-card');

@@ -1,5 +1,4 @@
 import { imgURL, smallImgURL } from "./config.js";
-import { requestRecs } from "./api.js";
 
 export let idForURL = 0;
 
@@ -11,7 +10,6 @@ let timerRecs;
 
 export function convertToUITop(data) {
     const lowAmount = [];
-    // console.log(data);
     
     for (let i = 0; i < 5; i++) {
         const imgMovie = `${smallImgURL}${data.results[i].poster_path}`;
@@ -55,7 +53,6 @@ export function convertToUIRecs(data) {
 }
 
 export function convertToUIDetails(data) {
-    console.log(data, 'det');
     const bgImg = data.backdrop_path;
     const imgMovie = data.poster_path;
     const title = data.title;
@@ -70,7 +67,6 @@ export function convertToUIDetails(data) {
         splittedGenres.push(unGenres[i].name);
     }
     let genres = splittedGenres.join(', ');
-    console.log(genres);
     
     const rating = Math.round(data.vote_average * 10);
     
@@ -152,7 +148,6 @@ export function renderTop(data) {
 }
 
 export function renderRecs(data) {
-    console.log(data);
     const fragment = document.createDocumentFragment();
 
     for (let i = 0; i < 20; i++) {
@@ -309,7 +304,7 @@ function makeDate(data) {
         case '12': monthName = 'December'; break;
         default: monthName = "No Date"; break;
     }
-    
+
     dividedDate.splice(0, 1, monthName);
     dividedDate.splice(1, 0, day);
     dividedDate.splice(2, 0, year);
