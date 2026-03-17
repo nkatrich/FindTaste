@@ -49,8 +49,12 @@ body {
     padding: 20px;
 }
 
-.logo-header img {
-    
+.logo-header {
+    transition: filter 0.3s ease;
+}
+
+.logo-header:hover {
+    filter: brightness(1.3);
 }
 
 .div-nav-header {
@@ -73,6 +77,11 @@ body {
     font-size: var(--font-size-header);
     font-weight: var(--marked-bold);
     text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-header a:hover {
+    color: var(--accent-2-clr);
 }
 
 .div-search-movies {
@@ -261,6 +270,11 @@ input[type="search"]::-moz-search-cancel-button {
     border-bottom: 3px solid var(--accent-clr);
     color: var(--light-clr);
     text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.item-list-suggested:hover {
+    color: var(--accent-clr);
 }
 
 .item-list-suggested img {
@@ -502,11 +516,29 @@ input[type="search"]::-moz-search-cancel-button {
     flex-direction: column;
     align-items: center;
     text-decoration: none;
+    position: relative;
+}
+
+.card-recom::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--accent-2-clr), var(--accent-clr));
+    border-radius: var(--main-border-radius);
+    filter: blur(10px);
+    z-index: -1;
+    transition: filter 0.9s ease;
+}
+
+.card-recom:hover::before {
+    filter: blur(50px);
 }
 
 .card-img-of-recom {
-    width: 100%;
-    max-width: 200px;
+    width: 200px;
     border-radius: var(--main-border-radius);
 }
 
@@ -537,7 +569,7 @@ input[type="search"]::-moz-search-cancel-button {
 .toUp {
     position: fixed;
     right: 18px;
-    bottom: 90px;
+    bottom: 95px;
     padding: 10px;
     background-color: var(--accent-clr);
     border-radius: 50%;
@@ -545,12 +577,16 @@ input[type="search"]::-moz-search-cancel-button {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    transition: opacity 0.9s ease;
+    transition: opacity 0.9s ease, background-color 0.3s ease;
 }
 
 .toUp img {
     width: 35px;
     height: auto;
+}
+
+.toUp:hover {
+    background-color: var(--accent-clr-trs);
 }
 
 .div-list-of-wish {
@@ -567,7 +603,7 @@ input[type="search"]::-moz-search-cancel-button {
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
+    transition: transform 0.3s ease;
 }
 
 .btn-list-of-wish::before {
@@ -584,6 +620,10 @@ input[type="search"]::-moz-search-cancel-button {
 .btn-list-of-wish img {
     width: 40px;
     height: auto;
+}
+
+.btn-list-of-wish:hover {
+    transform: scale(1.15);
 }
 
 .container-details {
@@ -782,6 +822,11 @@ input[type="search"]::-moz-search-cancel-button {
     border-radius: var(--main-border-radius);
     color: var(--light-clr);
     text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.card-favorite:hover, .card-wishlist:hover {
+    transform: scale(1.05);
 }
 
 .title-of-movie-favorite, .title-of-movie-wishlist {
@@ -812,6 +857,12 @@ input[type="search"]::-moz-search-cancel-button {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.btn-del-card:hover {
+    transform: scale(1.15);
+    cursor: pointer;
 }
 
 .about-API {
@@ -852,16 +903,37 @@ article img {
 
 .p-about-developer {
     font-weight: var(--marked-bold);
+    position: relative;
+}
+
+.p-about-developer::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 0;
+    background: linear-gradient(135deg, var(--accent-2-clr), var(--accent-clr));
+    width: 100%;
+    height: 3px;
 }
 
 .socials-media {
-    display: flex;
+    position: relative;
+    margin: 20px;
+    display: inline-flex;
     gap: 15px;
 }
 
 .socials-media img {
     width: 80px;
     height: 80px;
+}
+
+.socials-media a {
+    transition: transform 0.3s ease;
+}
+
+.socials-media a:hover {
+    transform: scale(1.15);
 }
 
 @media (min-width: 768px) {

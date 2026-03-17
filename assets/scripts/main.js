@@ -115,14 +115,16 @@ function renderMovie(idForURL) {
             </section>
   `;
   requestDetails(idForURL);
-  document.querySelector('.add-favorite').style.transition = 'filter 0.5s ease';
+  document.querySelector('.add-favorite').style.transition = 'filter 0.6s ease';
   document.querySelector('.add-favorite').style.filter = 'brightness(1)';
+  document.querySelector('.add-favorite').style.cursor = 'pointer';
   const index1 = favoritesMovies.findIndex(i => i.id === idForURL);
     if (index1 !== -1) {
         document.querySelector('.add-favorite').style.filter = 'brightness(0.4)';
+        document.querySelector('.add-favorite').style.cursor = 'default';
     } else {
         document.querySelector('.add-favorite').addEventListener('click', () => {
-
+        document.querySelector('.add-favorite').style.cursor = 'default';
         document.querySelector('.add-favorite').style.filter = 'brightness(0.4)';
         const titleOfMovieDesc = document.querySelector('.title-of-movie-desc').textContent;
         const date = document.querySelector('.date-info-movie-desc').textContent;
@@ -142,14 +144,17 @@ function renderMovie(idForURL) {
     });
     }
   
-    document.querySelector('.add-wishlist').style.transition = 'filter 0.5s ease';
+    document.querySelector('.add-wishlist').style.transition = 'filter 0.6s ease';
   document.querySelector('.add-wishlist').style.filter = 'brightness(1)';
+  document.querySelector('.add-wishlist').style.cursor = 'pointer';
   const index2 = wishlistMovies.findIndex(i => i.id === idForURL);
   if (index2 !== -1) {
+        document.querySelector('.add-wishlist').style.cursor = 'default';
         document.querySelector('.add-wishlist').style.filter = 'brightness(0.4)';
     } else {
         document.querySelector('.add-wishlist').addEventListener('click', () => {
-
+        
+        document.querySelector('.add-wishlist').style.cursor = 'default';
         document.querySelector('.add-wishlist').style.filter = 'brightness(0.4)';
         const titleOfMovieDesc = document.querySelector('.title-of-movie-desc').textContent;
         const date = document.querySelector('.date-info-movie-desc').textContent;
