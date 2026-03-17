@@ -879,9 +879,9 @@ input[type="search"]::-moz-search-cancel-button {
     gap: 15px;
 }
 
-article img {
+.tmdb {
     width: 100%;
-    max-width: 800px;
+    max-width: 600px;
     height: auto;
 }
 
