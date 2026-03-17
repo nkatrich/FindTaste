@@ -28,14 +28,20 @@ export async function requestTop() {
 export async function requestRecs() {
     try {
         if (stateLoading.page <= stateLoading.maxPage) {
-            stateLoading.page++;
-            const recsData = await fetch(`${baseURL}/movie/popular?language=en-US&page=${String(stateLoading.page)}`, options);
-            if (!recsData.ok) {
-                showErr();
+            if (stateLoading.loading) {
+                return;
+            } else {
+                stateLoading.page++;
+                const recsData = await fetch(`${baseURL}/movie/popular?language=en-US&page=${String(stateLoading.page)}`, options);
+                stateLoading.loading = true;
+                if (!recsData.ok) {
+                    showErr();
+                }
+                const readyData = await recsData.json();
+                const validData = convertToUIRecs(readyData);
+                renderRecs(validData);
+                stateLoading.loading = false;
             }
-            const readyData = await recsData.json();
-            const validData = convertToUIRecs(readyData);
-            renderRecs(validData);
         } else {
             return;
         }
