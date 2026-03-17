@@ -131,7 +131,8 @@ export function renderTop(data) {
         titleOfRecom.textContent = movie.titleMovie;
         dateOfRecom.textContent = movie.dateMovie;
         percentageOfRateOfRecom.textContent = movie.rateMovie + '%';
-        makeRate(movie.rateMovie)
+        const visualRateOfRecom = document.querySelector(`.visual-rate-of-recom`);
+        makeRate(movie.rateMovie, visualRateOfRecom);
 
         void imgRandomRecom.offsetWidth;
         void titleOfRecom.offsetWidth; 
@@ -182,13 +183,13 @@ export function renderRecs(data) {
         cardPercentageOfRateOfRecom.textContent = data.rates[i] + '%';
         if (data.rates[i] >= 70) {
             cardVisualRateOfRecom.style.backgroundColor = 'rgb(12, 200, 12)';
-            cardVisualRateOfRecom.style.transform = `translateX(${data.rates[i]}%) scaleY(2)`;
+            cardVisualRateOfRecom.style.transform = `translateX(${data.rates[i]}%)`;
         } else if (data.rates[i] >= 40) {
             cardVisualRateOfRecom.style.backgroundColor = '#E7E127';
-            cardVisualRateOfRecom.style.transform = `translateX(${data.rates[i]}%) scaleY(2)`;
+            cardVisualRateOfRecom.style.transform = `translateX(${data.rates[i]}%)`;
         } else {
            cardVisualRateOfRecom.style.backgroundColor = 'rgb(203, 36, 36)';
-           cardVisualRateOfRecom.style.transform = `translateX(${data.rates[i]}%) scaleY(2)`;
+           cardVisualRateOfRecom.style.transform = `translateX(${data.rates[i]}%)`;
         }
 
         a.appendChild(img);
@@ -225,7 +226,8 @@ export function renderDetails(data) {
     dateInfoMovieDesc.textContent = data.date;
     genreOfMovieDesc.textContent = data.genres;
     percentageOfRateOfRecom.textContent = `${data.rating}% Of Rating`;
-    makeRate(data.rating);
+    const visualRateOfRecom = document.querySelector(`.visual-rate-of-recom`);
+    makeRate(data.rating, visualRateOfRecom);
     reviewDetails.textContent = data.overview;
 }
 
@@ -289,6 +291,8 @@ function makeDate(data) {
     const dividedDate = data.split('-');
     
     let monthName;
+    const year = dividedDate[0];
+    const day = dividedDate[2];
     
     switch (dividedDate[1]) {
         case '01': monthName = 'January'; break;
@@ -305,22 +309,24 @@ function makeDate(data) {
         case '12': monthName = 'December'; break;
         default: monthName = "No Date"; break;
     }
-    dividedDate.splice(1, 1);
-    dividedDate.splice(2, 0, monthName);
+    
+    dividedDate.splice(0, 1, monthName);
+    dividedDate.splice(1, 0, day);
+    dividedDate.splice(2, 0, year);
+    dividedDate.splice(3, 2);
     const date = dividedDate.join(' ');
     return date;
 }
 
-function makeRate(data) {
-    const visualRateOfRecom = document.querySelector('.visual-rate-of-recom');
+function makeRate(data, tag) {
     if (data >= 70) {
-        visualRateOfRecom.style.backgroundColor = 'rgb(12, 200, 12)';
-        visualRateOfRecom.style.transform = `translateX(${data}%) scaleY(2)`;
+        tag.style.backgroundColor = 'rgb(12, 200, 12)';
+        tag.style.transform = `translateX(${data}%)`;
     } else if (data >= 40) {
-        visualRateOfRecom.style.backgroundColor = '#E7E127';
-        visualRateOfRecom.style.transform = `translateX(${data}%) scaleY(2)`;
+        tag.style.backgroundColor = '#E7E127';
+        tag.style.transform = `translateX(${data}%)`;
     } else {
-        visualRateOfRecom.style.backgroundColor = 'rgb(203, 36, 36)';
-        visualRateOfRecom.style.transform = `translateX(${data}%) scaleY(2)`;
+        tag.style.backgroundColor = 'rgb(203, 36, 36)';
+        tag.style.transform = `translateX(${data}%)`;
     }
 }
