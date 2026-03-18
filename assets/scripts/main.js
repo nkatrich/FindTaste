@@ -35,7 +35,10 @@ function renderHome() {
             <div class="container-list-movies">
                 <div class="div-title-recomindations-list"><h2 class="title-recomindations-list">Recommendations</h2></div>
                     <div class="cards-of-recs-list"></div>
-                <div class="observer"></div>
+                <div class="arrows-for-pages">
+                    <button class="arrow-page-left"><img src="./assets/icons/UI-front/arrow.svg"></button>
+                    <button class="arrow-page-right"><img src="./assets/icons/UI-front/arrow.svg"></button>
+                </div>
             </div>
         </section>
     </section>
@@ -43,32 +46,25 @@ function renderHome() {
   `;
   requestTop();
 
-  // scroll events
-  const optionsObserver = {
-      rootMargin: '600px'
-      };
-  
-      const callbackObserver = (entries) => {
-      entries.forEach(entry => {
-          if (entry.isIntersecting) {
-              requestRecs();
-          }
-      });
-      };
-      
-      const observer = new IntersectionObserver(callbackObserver, optionsObserver);
-      observer.observe(document.querySelector('.observer'));
+    document.querySelector('.arrow-page-left').addEventListener('click', () => {
+        requestRecs(false);
+    });
+    document.querySelector('.arrow-page-right').addEventListener('click', () => {
+        requestRecs(true);
+    });
+
+  // scroll event
 
   const toUp = document.querySelector('.toUp');
 
     document.addEventListener('scroll', () => {
         const currentPos = window.pageYOffset;
         
-        if (currentPos <= 1000) {
-            unShow();
+        if (currentPos <= 800) {
+            toUp.style.display = 'none';
         }
         else {
-            show();
+            toUp.style.display = 'flex';
         }
     })
 
@@ -79,13 +75,10 @@ function renderHome() {
         });
     });
 
-    const unShow = () => toUp.style.display = 'none';
-    const show = () => toUp.style.display = 'flex';
-    unShow();
+    toUp.style.display = 'none';
 }
 
 function renderMovie(idForURL) {
-  window.location.hash = `#movie/${idForURL}`;
   app.innerHTML = `
     <section class="details">
                 <div class="container-details">
@@ -175,7 +168,6 @@ function renderMovie(idForURL) {
 }
 
 function renderWishlist() {
-  window.location.hash = "#wishlist";
   app.innerHTML = `
     <section class="wishlist">
         <div class="title-wishlist"><h2>Wishlist</h2></div>
@@ -286,7 +278,6 @@ containerOfWishlist.addEventListener('click', (e) => {
 }
 
 function renderAuthority() {
-  window.location.hash = "authority";
   app.innerHTML = `
     <section class="about-API">
                 <article>

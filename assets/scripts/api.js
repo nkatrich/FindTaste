@@ -5,7 +5,6 @@ import { skeletonCard} from "./main.js";
 export const stateLoading = {
     page: 1,
     maxPage: 76,
-    loading: false
 };
 
 // loaders vars
@@ -25,12 +24,10 @@ export async function requestTop() {
     }
 }
 
-export async function requestRecs() {
+export async function requestRecs(addOrRem) {
     try {
         if (stateLoading.page <= stateLoading.maxPage) {
-            if (stateLoading.loading) {
-                return;
-            } else {
+            if (addOrRem) {
                 stateLoading.page++;
                 const recsData = await fetch(`${baseURL}/movie/popular?language=en-US&page=${String(stateLoading.page)}`, options);
                 stateLoading.loading = true;
@@ -40,7 +37,16 @@ export async function requestRecs() {
                 const readyData = await recsData.json();
                 const validData = convertToUIRecs(readyData);
                 renderRecs(validData);
-                stateLoading.loading = false;
+            } else {
+                stateLoading.page--;
+                const recsData = await fetch(`${baseURL}/movie/popular?language=en-US&page=${String(stateLoading.page)}`, options);
+                stateLoading.loading = true;
+                if (!recsData.ok) {
+                    showErr();
+                }
+                const readyData = await recsData.json();
+                const validData = convertToUIRecs(readyData);
+                renderRecs(validData);
             }
         } else {
             return;

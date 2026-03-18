@@ -123,11 +123,11 @@ body {
 }
 
 .logo-header {
-    transition: filter 0.3s ease;
+    transition: filter 0.9s ease;
 }
 
 .logo-header:hover {
-    filter: brightness(1.3);
+    filter: brightness(12);
 }
 
 .div-nav-header {
@@ -548,6 +548,34 @@ input[type="search"]::-moz-search-cancel-button {
 
 .percentage-of-rate-of-recom {
     color: var(--light-clr);
+}
+
+.arrows-for-pages {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.arrow-page-left, .arrow-page-right {
+    background-color: var(--accent-clr);
+    padding: 5px;
+    border-radius: var(--main-border-radius);
+    width: 70px;
+    transition: background-color 0.3s ease;
+}
+
+.arrow-page-left:hover, .arrow-page-right:hover {
+    background-color: var(--accent-clr-trs);
+    cursor: pointer;
+}
+
+.arrow-page-left {
+    transform: rotate(-90deg);
+}
+
+.arrow-page-right {
+    transform: rotate(90deg);
 }
 
 .toUp {
@@ -1015,3 +1043,4 @@ input[type="search"]::-moz-search-cancel-button {
         top: 120px;
     }
 }
+
