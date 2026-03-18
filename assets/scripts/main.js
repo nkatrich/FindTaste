@@ -1,4 +1,4 @@
-import { requestSearch, requestDetails, requestTop, requestRecs } from "./api.js";
+import { requestSearch, requestDetails, requestTop, requestRecs, stateLoading } from "./api.js";
 import { setIdForURL } from "./render.js";
 
 export const skeletonCard = document.querySelector('.skeleton-card');
@@ -47,10 +47,12 @@ function renderHome() {
   requestTop();
 
     document.querySelector('.arrow-page-left').addEventListener('click', () => {
-        requestRecs(false);
+        stateLoading.page--;
+        window.location.hash = `#popular?language=en-US&page=${stateLoading.page}`;
     });
     document.querySelector('.arrow-page-right').addEventListener('click', () => {
-        requestRecs(true);
+        stateLoading.page++;
+        window.location.hash = `#popular?language=en-US&page=${stateLoading.page}`;
     });
 
   // scroll event
@@ -298,6 +300,7 @@ function router() {
 
   if (!hash) {
     renderHome();
+    requestRecs(true);
   } else if (hash.startsWith("#movie/")) {
     const id = hash.split("/")[1];
     renderMovie(id);
@@ -305,6 +308,10 @@ function router() {
     renderWishlist();
   } else if (hash === "#authority") {
     renderAuthority();
+  } else if (hash.startsWith('#popular')) {
+    stateLoading.page = parseInt(page);
+    const id = hash.split("page=")[1];
+    requestRecs(true);
   }
 }
 

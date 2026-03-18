@@ -28,9 +28,9 @@ export async function requestRecs(addOrRem) {
     try {
         if (stateLoading.page <= stateLoading.maxPage) {
             if (addOrRem) {
-                stateLoading.page++;
-                const recsData = await fetch(`${baseURL}/movie/popular?language=en-US&page=${String(stateLoading.page)}`, options);
-                stateLoading.loading = true;
+                skeletonCard.classList.add('an');
+                removeLoader();
+                const recsData = await fetch(`${baseURL}/movie/popular?language=en-US&page=${String(id)}`, options);
                 if (!recsData.ok) {
                     showErr();
                 }
@@ -38,9 +38,9 @@ export async function requestRecs(addOrRem) {
                 const validData = convertToUIRecs(readyData);
                 renderRecs(validData);
             } else {
-                stateLoading.page--;
-                const recsData = await fetch(`${baseURL}/movie/popular?language=en-US&page=${String(stateLoading.page)}`, options);
-                stateLoading.loading = true;
+                skeletonCard.classList.add('an');
+                removeLoader();
+                const recsData = await fetch(`${baseURL}/movie/popular?language=en-US&page=${String(id)}`, options);
                 if (!recsData.ok) {
                     showErr();
                 }
@@ -110,4 +110,10 @@ const showErr = () => {
     setTimeout(() => {
         errorPlate.classList.remove('active');
     }, 9000);
+}
+
+const removeLoader = () => {
+    setTimeout(() => {
+        skeletonCard.classList.remove('an');
+    }, 800);
 }
