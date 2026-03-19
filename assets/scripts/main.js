@@ -45,7 +45,6 @@ function renderHome() {
     <button class="toUp" type="button"><img src="./assets/icons/UI-front/arrow.svg" alt="Arrow up - define that you can get into top of the web page"></button>
   `;
   requestTop();
-  requestRecs(true, 2);
   clearInterval(timerRecs);
     document.querySelector('.arrow-page-left').addEventListener('click', () => {
         if (stateLoading.page !== 1) {
@@ -54,8 +53,10 @@ function renderHome() {
         }
     });
     document.querySelector('.arrow-page-right').addEventListener('click', () => {
-        stateLoading.page++;
-        window.location.hash = `#popular?language=en-US&page=${stateLoading.page}`;
+        if (stateLoading.page < stateLoading.maxPage) {
+            stateLoading.page++;
+            window.location.hash = `#popular?language=en-US&page=${stateLoading.page}`;
+        }
     });
 
   // scroll event

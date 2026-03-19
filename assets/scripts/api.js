@@ -4,7 +4,7 @@ import { skeletonCard} from "./main.js";
 
 export const stateLoading = {
     page: 1,
-    maxPage: 76,
+    maxPage: 500,
 };
 
 // loaders vars
@@ -16,6 +16,8 @@ export async function requestTop() {
             showErr();
         }
         const readyData = await recsData.json();
+        console.log(readyData);
+        
         const validData = convertToUITop(readyData);
         renderTop(validData);
     } catch (err) {
@@ -53,6 +55,7 @@ export async function requestRecs(addOrRem, id) {
         }
     } catch (err) {
         showErr();
+        console.error(err)
     }
 }
 

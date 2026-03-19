@@ -25,7 +25,6 @@ export function convertToUITop(data) {
             id
         }
         lowAmount.push(readyData);
-        
     }
     return { lowAmount };
 }
@@ -126,7 +125,7 @@ export function renderTop(data) {
         imgRandomRecom.src = movie.imgMovie;
         titleOfRecom.textContent = movie.titleMovie;
         dateOfRecom.textContent = movie.dateMovie;
-        percentageOfRateOfRecom.textContent = movie.rateMovie + '%';
+        percentageOfRateOfRecom.textContent = movie.rateMovie !== 0 ? movie.rateMovie + '%' : 'NR';
         const visualRateOfRecom = document.querySelector(`.visual-rate-of-recom`);
         makeRate(movie.rateMovie, visualRateOfRecom);
 
@@ -150,6 +149,7 @@ export function renderTop(data) {
 export function renderRecs(data) {
     const cardsOfRecsList = document.querySelector('.cards-of-recs-list');
     cardsOfRecsList.innerHTML = '';
+    const rates = data.rates;
 
     for (let i = 0; i < 20; i++) {
         cardsOfRecsList.innerHTML += `
@@ -160,7 +160,6 @@ export function renderRecs(data) {
                 <div class="div-rate-of-movie-desc"><div class="div-bar-and-perc"><span class="card-visual-rate-of-recom"></div></span><div class="percentage-of-rate-of-recom"></div></div>
             </a>
         `;
-
         const a = document.querySelectorAll('.card-recom');
         const img = document.querySelectorAll('.card-img-of-recom');
         const h2 = document.querySelectorAll('.card-title-of-recom');
@@ -174,7 +173,7 @@ export function renderRecs(data) {
         img[i].setAttribute('onerror', `this.onerror=null; this.src='./assets/icons/UI-front/err-load.svg';`);
         h2[i].textContent = data.titles[i];
         h3[i].textContent = data.dates[i];
-        cardPercentageOfRateOfRecom[i].textContent = data.rates[i] + '%';
+        cardPercentageOfRateOfRecom[i + 1].textContent = data.rates[i] + '%';
         if (data.rates[i] >= 70) {
             cardVisualRateOfRecom[i].style.backgroundColor = 'rgb(12, 200, 12)';
             cardVisualRateOfRecom[i].style.transform = `translateX(${data.rates[i]}%)`;

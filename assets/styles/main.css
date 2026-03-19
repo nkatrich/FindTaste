@@ -3,6 +3,7 @@ body {
     color: var(--light-clr);
     font-family: 'Roboto', sans-serif;
     scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .skeleton-card {
