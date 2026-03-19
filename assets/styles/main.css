@@ -770,6 +770,11 @@ input[type="search"]::-moz-search-cancel-button {
     align-items: center;
     border-radius: 50%;
     padding: 40px;
+    transition: transform 0.3s ease, filter 0.6s ease;
+}
+
+.add-favorite:hover, .add-wishlist:hover {
+    transform: scale(1.15);
 }
 
 .div-watch-trailer {

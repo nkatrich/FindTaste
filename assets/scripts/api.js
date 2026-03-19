@@ -16,8 +16,6 @@ export async function requestTop() {
             showErr();
         }
         const readyData = await recsData.json();
-        console.log(readyData);
-        
         const validData = convertToUITop(readyData);
         renderTop(validData);
     } catch (err) {

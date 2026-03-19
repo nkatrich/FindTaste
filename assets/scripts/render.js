@@ -120,8 +120,8 @@ export function renderTop(data) {
             dateOfRecom.classList.remove('an');
         }, 5100);
         
-        randomRecom.setAttribute('href', `#movie/${movie.id}`);
-        randomRecom.setAttribute('data-id', `${movie.id}`);
+        randomRecom.href = `#movie/${movie.id}`;
+        randomRecom.dataset.id = `${movie.id}`
         imgRandomRecom.src = movie.imgMovie;
         titleOfRecom.textContent = movie.titleMovie;
         dateOfRecom.textContent = movie.dateMovie;
@@ -149,7 +149,6 @@ export function renderTop(data) {
 export function renderRecs(data) {
     const cardsOfRecsList = document.querySelector('.cards-of-recs-list');
     cardsOfRecsList.innerHTML = '';
-    const rates = data.rates;
 
     for (let i = 0; i < 20; i++) {
         cardsOfRecsList.innerHTML += `
@@ -173,7 +172,7 @@ export function renderRecs(data) {
         img[i].setAttribute('onerror', `this.onerror=null; this.src='./assets/icons/UI-front/err-load.svg';`);
         h2[i].textContent = data.titles[i];
         h3[i].textContent = data.dates[i];
-        cardPercentageOfRateOfRecom[i + 1].textContent = data.rates[i] + '%';
+        cardPercentageOfRateOfRecom[i + 1].textContent = data.rates[i] !== 0 ? data.rates[i] + '%' : 'NR';
         if (data.rates[i] >= 70) {
             cardVisualRateOfRecom[i].style.backgroundColor = 'rgb(12, 200, 12)';
             cardVisualRateOfRecom[i].style.transform = `translateX(${data.rates[i]}%)`;
@@ -227,12 +226,12 @@ export function renderSearch(data) {
             texts.className = 'item-list-suggested-txt';
             
             img.src = `${smallImgURL}${data.imgs[i]}`;
-            img.setAttribute('alt', `preview movie`);
+            img.alt = 'preview movie';
             img.setAttribute('onerror', `this.onerror=null; this.src='./assets/icons/UI-front/err-load.svg';`);
             title.textContent = data.titles[i];
             date.textContent = data.dates[i];
-            item.setAttribute('href', `#movie/${data.idsMovies[i]}`);
-            item.setAttribute('data-id', `${data.idsMovies[i]}`);
+            item.href = `#movie/${data.idsMovies[i]}`;
+            item.dataset.id = `${data.idsMovies[i]}`;
 
             item.appendChild(img);
             texts.appendChild(title);
