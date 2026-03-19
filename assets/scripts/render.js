@@ -6,7 +6,7 @@ export function setIdForURL(newValue) {
     idForURL = newValue;
 }
 
-let timerRecs;
+export let timerRecs;
 
 export function convertToUITop(data) {
     const lowAmount = [];

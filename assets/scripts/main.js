@@ -1,5 +1,5 @@
 import { requestSearch, requestDetails, requestTop, requestRecs, stateLoading } from "./api.js";
-import { setIdForURL } from "./render.js";
+import { setIdForURL, timerRecs } from "./render.js";
 
 export const skeletonCard = document.querySelector('.skeleton-card');
 skeletonCard.classList.add('an');
@@ -45,10 +45,13 @@ function renderHome() {
     <button class="toUp" type="button"><img src="./assets/icons/UI-front/arrow.svg" alt="Arrow up - define that you can get into top of the web page"></button>
   `;
   requestTop();
-
+  requestRecs(true, 2);
+  clearInterval(timerRecs);
     document.querySelector('.arrow-page-left').addEventListener('click', () => {
-        stateLoading.page--;
-        window.location.hash = `#popular?language=en-US&page=${stateLoading.page}`;
+        if (stateLoading.page !== 1) {
+            stateLoading.page--;
+            window.location.hash = `#popular?language=en-US&page=${stateLoading.page}`;
+        }
     });
     document.querySelector('.arrow-page-right').addEventListener('click', () => {
         stateLoading.page++;
@@ -298,9 +301,12 @@ function renderAuthority() {
 function router() {
   const hash = window.location.hash;
 
-  if (!hash) {
+  if (hash.startsWith('#popular')) {
     renderHome();
-    requestRecs(true);
+    const id = hash.split("page=")[1];
+    stateLoading.page = Number(id);
+    window.location.hash = `#popular?language=en-US&page=${stateLoading.page}`;
+    requestRecs(true, id);
   } else if (hash.startsWith("#movie/")) {
     const id = hash.split("/")[1];
     renderMovie(id);
@@ -308,10 +314,8 @@ function router() {
     renderWishlist();
   } else if (hash === "#authority") {
     renderAuthority();
-  } else if (hash.startsWith('#popular')) {
-    stateLoading.page = parseInt(page);
-    const id = hash.split("page=")[1];
-    requestRecs(true);
+  } else if (!hash) {
+    window.location.hash = `#popular?language=en-US&page=1`;
   }
 }
 

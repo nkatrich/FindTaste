@@ -24,28 +24,28 @@ export async function requestTop() {
     }
 }
 
-export async function requestRecs(addOrRem) {
+export async function requestRecs(addOrRem, id) {
     try {
         if (stateLoading.page <= stateLoading.maxPage) {
             if (addOrRem) {
                 skeletonCard.classList.add('an');
-                removeLoader();
                 const recsData = await fetch(`${baseURL}/movie/popular?language=en-US&page=${String(id)}`, options);
                 if (!recsData.ok) {
                     showErr();
                 }
                 const readyData = await recsData.json();
                 const validData = convertToUIRecs(readyData);
+                removeLoader();
                 renderRecs(validData);
             } else {
                 skeletonCard.classList.add('an');
-                removeLoader();
                 const recsData = await fetch(`${baseURL}/movie/popular?language=en-US&page=${String(id)}`, options);
                 if (!recsData.ok) {
                     showErr();
                 }
                 const readyData = await recsData.json();
                 const validData = convertToUIRecs(readyData);
+                removeLoader();
                 renderRecs(validData);
             }
         } else {
@@ -115,5 +115,5 @@ const showErr = () => {
 const removeLoader = () => {
     setTimeout(() => {
         skeletonCard.classList.remove('an');
-    }, 800);
+    }, 700);
 }
