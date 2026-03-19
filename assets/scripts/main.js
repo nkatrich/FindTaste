@@ -75,10 +75,7 @@ function renderHome() {
     })
 
     toUp.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-        });
+        scrollUp();
     });
 
     toUp.style.display = 'none';
@@ -312,6 +309,7 @@ function router() {
     stateLoading.page = Number(id);
     window.location.hash = `#popular?language=en-US&page=${stateLoading.page}`;
     requestRecs(true, id);
+    scrollUp();
   } else if (hash.startsWith("#movie/")) {
     const id = hash.split("/")[1];
     renderMovie(id);
@@ -344,4 +342,11 @@ function debounce(fn, delay) {
             fn.apply(this, args);
         }, delay);
     }
+}
+
+const scrollUp = () => {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+    });
 }
