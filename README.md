@@ -1,5 +1,5 @@
 ﻿# FindTaste
-<img width="1000" height="1000" alt="image" src="https://github.com/user-attachments/assets/f5dd8d31-73f3-4175-94b7-f36c24f3ff90" />
+<img width="64" height="64" alt="image" src="https://github.com/user-attachments/assets/f5dd8d31-73f3-4175-94b7-f36c24f3ff90" />
 
 ## Project Summary:
 
